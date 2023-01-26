@@ -3,9 +3,14 @@ import "./ItemModal.css";
 //import testImage from "../../images/test_image.png"
 
 
-export default function ItemModal({ clickedItem, currentWeatherCard, isModalOpen}) {
+export default function ItemModal({ clickedItem, currentWeatherCard, isItemModalOpen }) {
   return (
-    <div className={`modal__preview ${isModalOpen.isOpen && "modal__preview-opened"}`} id="image-preview">
+    <div
+      className={`modal__preview ${
+        isItemModalOpen.isOpen && "modal__preview-opened"
+      }`}
+      id="image-preview"
+    >
       <div className="modal__preview-container">
         <button
           type="button"

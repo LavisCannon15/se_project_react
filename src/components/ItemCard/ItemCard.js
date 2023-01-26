@@ -19,11 +19,11 @@ export default function ItemCard() {
 
 export default function ItemCard({
   currentWeather,
-  setIsModalOpen,
+  setIsItemModalOpen,
   setClickedItem
 }) {
   const handleCardClick = (item) => {
-    setIsModalOpen({ isOpen: true, clickedItem: item });
+    setIsItemModalOpen({ isOpen: true, clickedItem: item });
     setClickedItem(item);
   };
 

@@ -19,10 +19,15 @@ export default function App() {
   const [currentWeather, setCurrentWeather] = useState({});
   const [currentWeatherCard, setCurrentWeatherCard] = useState({});
 
-  const [isModalOpen, setIsModalOpen] = useState({
+  const [isItemModalOpen, setIsItemModalOpen] = useState({
     isOpen: false,
     clickedItem: null,
   });
+
+    const [isFormModalOpen, setIsFormModalOpen] = useState({
+      isOpen: false,
+    });
+
 
   const [clickedItem, setClickedItem] = useState(null);
 
@@ -41,19 +46,19 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header currentWeather={currentWeather} setIsModalOpen={setIsModalOpen} />
+      <Header currentWeather={currentWeather} setIsFormModalOpen={setIsFormModalOpen} />
       <Main
         currentWeather={currentWeather}
-        setIsModalOpen={setIsModalOpen}
+        setIsItemModalOpen={setIsItemModalOpen}
         setClickedItem={setClickedItem}
       />
       <Footer />
       <ItemModal
         clickedItem={clickedItem}
         currentWeatherCard={currentWeatherCard}
-        isModalOpen={isModalOpen}
+        isItemModalOpen={isItemModalOpen}
       />
-      <ModalWithForm isModalOpen={isModalOpen} />
+      <ModalWithForm isFormModalOpen={isFormModalOpen} />
     </div>
   );
 }

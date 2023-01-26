@@ -5,11 +5,11 @@
 
 .modal {
 
-  position: absolute;
+  position: relative;
   
   left: 472px;
   right: 472px;
-  bottom: 710px;
+  bottom: 1510px;
   
 
   visibility: hidden;

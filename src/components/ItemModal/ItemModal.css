@@ -4,11 +4,11 @@
 }
 
 .modal__preview {
-  position: absolute;
+  position: relative;
 
   left: 472px;
   right: 472px;
-  bottom: 625px;
+  bottom: 980px;
 
   width: 498px;
   height: 610px;
