@@ -5,18 +5,16 @@ import "./Main.css";
 
 export default function Main({
   currentWeather,
-  currentWeatherCard,
-  isModalOpen,
   setIsModalOpen,
+  setClickedItem
 }) {
   return (
     <>
       <WeatherCard currentWeather={currentWeather} />
       <ItemCard
         currentWeather={currentWeather}
-        currentWeatherCard={currentWeatherCard}
-        isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        setClickedItem={setClickedItem}
       />
     </>
   );

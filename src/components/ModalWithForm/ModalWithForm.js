@@ -1,9 +1,9 @@
 import React from "react";
 import "./ModalWithForm.css";
 
-export default function ModalWithForm() {
+export default function ModalWithForm({isModalOpen }) {
   return (
-    <div className="modal">
+    <div className={`modal ${isModalOpen.isOpen && "modal__opened"}`}>
       <div className="modal__container">
         <form className="modal__form" id="addCardForm">
           <button

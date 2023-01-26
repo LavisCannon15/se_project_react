@@ -20,10 +20,11 @@ export default function App() {
   const [currentWeatherCard, setCurrentWeatherCard] = useState({});
 
   const [isModalOpen, setIsModalOpen] = useState({
-      isOpen: false,
-      clickedItem: null,
-    });
+    isOpen: false,
+    clickedItem: null,
+  });
 
+  const [clickedItem, setClickedItem] = useState(null);
 
   useEffect(() => {
     const APIkey = "bd819e389592868e5cd65868e265238f";
@@ -40,18 +41,19 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header
-        currentWeather={currentWeather}
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-      />
+      <Header currentWeather={currentWeather} setIsModalOpen={setIsModalOpen} />
       <Main
         currentWeather={currentWeather}
-        currentWeatherCard={currentWeatherCard}
-        isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        setClickedItem={setClickedItem}
       />
       <Footer />
+      <ItemModal
+        clickedItem={clickedItem}
+        currentWeatherCard={currentWeatherCard}
+        isModalOpen={isModalOpen}
+      />
+      <ModalWithForm isModalOpen={isModalOpen} />
     </div>
   );
 }

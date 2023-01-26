@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./ItemCard.css";
-import ItemModal from "../ItemModal/ItemModal";
 
 import { defaultClothingItems } from "../../utils/clothingItems";
 
@@ -20,12 +19,9 @@ export default function ItemCard() {
 
 export default function ItemCard({
   currentWeather,
-  currentWeatherCard,
-  isModalOpen,
   setIsModalOpen,
+  setClickedItem
 }) {
-  const [clickedItem, setClickedItem] = useState(null);
-
   const handleCardClick = (item) => {
     setIsModalOpen({ isOpen: true, clickedItem: item });
     setClickedItem(item);
@@ -56,12 +52,6 @@ export default function ItemCard({
           </li>
         ))}
       </ul>
-      <div className={`modal__preview ${isModalOpen.isOpen && "modal__preview-opened"}`}>
-        <ItemModal
-          currentWeatherCard={currentWeatherCard}
-          clickedItem={clickedItem}
-        />
-      </div>
     </section>
   );
 }

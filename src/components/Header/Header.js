@@ -11,13 +11,12 @@ const currentDate = new Date().toLocaleString("default", {
 
 export default function Header({
   currentWeather,
-  isModalOpen,
   setIsModalOpen,
 }) {
   //const [clickedItem, setClickedItem] = useState(null);
 
   const handleButtonClick = () => {
-    setIsModalOpen({ isOpen: true, clickedItem: null });
+    setIsModalOpen({ isOpen: true });
   };
 
   return (
@@ -45,10 +44,6 @@ export default function Header({
             </p>
           </li>
         </div>
-      </div>
-
-      <div className={`modal ${isModalOpen.isOpen && "modal__opened"}`}>
-        <ModalWithForm />
       </div>
     </header>
   );
