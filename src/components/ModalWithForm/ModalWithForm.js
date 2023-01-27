@@ -1,7 +1,11 @@
 import React from "react";
 import "./ModalWithForm.css";
 
-export default function ModalWithForm({ isFormModalOpen }) {
+export default function ModalWithForm({ isFormModalOpen, setIsFormModalOpen }) {
+  const handleButtonClick = () => {
+    setIsFormModalOpen({ isOpen: false });
+  };
+
   return (
     <div className={`modal ${isFormModalOpen.isOpen && "modal__opened"}`}>
       <div className="modal__container">
@@ -11,6 +15,7 @@ export default function ModalWithForm({ isFormModalOpen }) {
             className="modal__exit-button"
             aria-label="exit button"
             id="addExitButton"
+            onClick={() => handleButtonClick()}
           ></button>
 
           <fieldset className="modal__form-fieldset">

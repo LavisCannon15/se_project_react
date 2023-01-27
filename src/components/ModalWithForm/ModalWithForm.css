@@ -13,6 +13,10 @@
   
 
   visibility: hidden;
+
+  margin:0;
+
+
 }
 
 .modal__opened {
@@ -53,6 +57,8 @@
   padding:0;
 
   border: none;
+
+  cursor: pointer;
 }
 
 .modal__form-title {

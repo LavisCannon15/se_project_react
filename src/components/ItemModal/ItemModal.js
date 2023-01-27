@@ -3,13 +3,17 @@ import "./ItemModal.css";
 //import testImage from "../../images/test_image.png"
 
 
-export default function ItemModal({ clickedItem, currentWeatherCard, isItemModalOpen }) {
+export default function ItemModal({ clickedItem, currentWeatherCard, isItemModalOpen, setIsItemModalOpen }) {
+      const handleButtonClick = () => {
+        setIsItemModalOpen({ isOpen: false });
+      };
+
+
   return (
     <div
       className={`modal__preview ${
         isItemModalOpen.isOpen && "modal__preview-opened"
       }`}
-      id="image-preview"
     >
       <div className="modal__preview-container">
         <button
@@ -17,6 +21,7 @@ export default function ItemModal({ clickedItem, currentWeatherCard, isItemModal
           className="modal__close-button"
           aria-label="exit button"
           id="previewExitButton"
+          onClick={() => handleButtonClick()}
         ></button>
 
         {clickedItem && (

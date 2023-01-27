@@ -1,12 +1,11 @@
-.app{
+.app {
   width: 1440px;
+  height: 1084px;
 
-  background: #F3F3F3;
+  background: #f3f3f3;
+
+  margin: 0;
 }
-
-
-
-
 
 /*
 .App {
