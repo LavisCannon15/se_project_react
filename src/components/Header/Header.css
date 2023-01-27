@@ -3,6 +3,8 @@
   src: url("../../fonts/CabinetGrotesk-Medium.otf");
 }
 
+
+
 .header__content {
   display: flex;
   justify-content: space-between;
@@ -20,11 +22,13 @@
 
   padding-top: 32px;
   padding-bottom: 28px;
-  padding-left: 40px;
-  padding-right: 40px;
+ 
 
   width: 1360px;
   height: 40px;
+
+  display:flex;
+  margin:auto;
 }
 
 .header__logo-date-location {

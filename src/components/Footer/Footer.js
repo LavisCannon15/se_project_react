@@ -3,7 +3,7 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <footer className="app__footer">
+    <footer className="footer">
       <div className="footer__content">
         <li className="footer__list-item">
           <p className="footer__developer-name">Developed by LavisCannon</p>

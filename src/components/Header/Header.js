@@ -20,7 +20,7 @@ export default function Header({
   };
 
   return (
-    <header className="app__header">
+    <header className="header">
       <div className="header__content">
         <div className="header__logo-date-location">
           <p className="header__logo">wtwr°</p>

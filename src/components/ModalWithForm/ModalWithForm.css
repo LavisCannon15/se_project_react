@@ -4,33 +4,26 @@
 }
 
 .modal {
+  position: absolute;
 
-  position: relative;
-  
   left: 472px;
   right: 472px;
-  bottom: 1510px;
-  
+  bottom: 440px;
 
   visibility: hidden;
 
-  margin:0;
+  margin: auto;
 
 
+  width: 496px;
+  height: 436px;
 }
 
 .modal__opened {
   visibility: visible;
 }
 
-.modal__container {
-  margin: 0;
-}
-
 .modal__form {
-  width: 496px;
-  height: 436px;
-
   background: #ffffff;
 
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -44,7 +37,7 @@
 }
 
 .modal__exit-button {
-    position: absolute;
+  position: absolute;
   background: transparent url(../../images/modal-exit-icon.svg) center no-repeat;
 
   width: 16px;
@@ -54,7 +47,7 @@
   margin-right: 31px;
   margin-top: 23px;
 
-  padding:0;
+  padding: 0;
 
   border: none;
 
@@ -99,8 +92,6 @@
   padding: 0;
   margin: 0;
 }
-
-
 
 .modal__form-input_checkbox {
   display: flex;

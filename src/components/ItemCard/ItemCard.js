@@ -37,7 +37,7 @@ export default function ItemCard({
 
       <ul className="cards__list">
         {defaultClothingItems.map((item) => (
-          <li className="card">
+          <li className="card" key={item._id}>
             <div className="card__image-title-wrapper">
               <div className="card__title-box">
                 <h2 className="card__title">{item.name}</h2>

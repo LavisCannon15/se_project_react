@@ -4,6 +4,7 @@
 }
 
 .weather__card {
+
   width: 1360px;
   height: 80px;
 
@@ -13,8 +14,14 @@
   text-decoration: none;
   list-style-type: none;
 
-  display:flex;
-  margin:auto;
+ 
+  margin: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+
+
+  
+
   
  
 }
