@@ -51,13 +51,13 @@ export default function App() {
       />
       <Main
         currentWeather={currentWeather}
+        currentWeatherCard={currentWeatherCard}
         setIsItemModalOpen={setIsItemModalOpen}
         setClickedItem={setClickedItem}
       />
       <Footer />
       <ItemModal
         clickedItem={clickedItem}
-        currentWeatherCard={currentWeatherCard}
         isItemModalOpen={isItemModalOpen}
         setIsItemModalOpen={setIsItemModalOpen}
       />

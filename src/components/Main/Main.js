@@ -5,6 +5,7 @@ import "./Main.css";
 
 export default function Main({
   currentWeather,
+  currentWeatherCard,
   setIsItemModalOpen,
   setClickedItem
 }) {
@@ -13,6 +14,7 @@ export default function Main({
       <WeatherCard currentWeather={currentWeather} />
       <ItemCard
         currentWeather={currentWeather}
+        currentWeatherCard={currentWeatherCard}
         setIsItemModalOpen={setIsItemModalOpen}
         setClickedItem={setClickedItem}
       />

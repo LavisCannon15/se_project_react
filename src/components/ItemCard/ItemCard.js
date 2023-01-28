@@ -19,13 +19,18 @@ export default function ItemCard() {
 
 export default function ItemCard({
   currentWeather,
+  currentWeatherCard,
   setIsItemModalOpen,
-  setClickedItem
+  setClickedItem,
 }) {
   const handleCardClick = (item) => {
     setIsItemModalOpen({ isOpen: true, clickedItem: item });
     setClickedItem(item);
   };
+
+  const filteredItems = defaultClothingItems.filter(
+    (item) => item.weather === currentWeatherCard
+  );
 
   return (
     <section className="cards">
@@ -36,7 +41,7 @@ export default function ItemCard({
       </h3>
 
       <ul className="cards__list">
-        {defaultClothingItems.map((item) => (
+        {filteredItems.map((item) => (
           <li className="card" key={item._id}>
             <div className="card__image-title-wrapper">
               <div className="card__title-box">

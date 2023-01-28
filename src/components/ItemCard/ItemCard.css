@@ -92,11 +92,15 @@
   gap: 8px;
 
   margin-top: 16px;
-  margin-left: 128px;
-  margin-right: 127px;
+  margin-left: 116px;
+  margin-right: 116px;
+
+
 
   background: #ffffff;
   border-radius: 4px;
+
+  
 
 }
 
@@ -107,6 +111,7 @@
   font-size: 16px;
   line-height: 20px;
 
+
   color: rgba(0, 0, 0, 0.6);
 
   /* Inside auto layout */
@@ -114,6 +119,10 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+
+  margin: 0;
+
+
 }
 
 .card__image {

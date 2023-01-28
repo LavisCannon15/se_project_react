@@ -3,7 +3,7 @@ import "./ItemModal.css";
 //import testImage from "../../images/test_image.png"
 
 
-export default function ItemModal({ clickedItem, currentWeatherCard, isItemModalOpen, setIsItemModalOpen }) {
+export default function ItemModal({ clickedItem,  isItemModalOpen, setIsItemModalOpen }) {
       const handleButtonClick = () => {
         setIsItemModalOpen({ isOpen: false });
       };
@@ -36,9 +36,10 @@ export default function ItemModal({ clickedItem, currentWeatherCard, isItemModal
           {clickedItem && (
             <h3 className="modal__preview-title">{clickedItem.name}</h3>
           )}
+          {clickedItem && (
           <h3 className="modal__preview-weather">
-            {"Weather:" + " " + currentWeatherCard}
-          </h3>
+            {"Weather: " + clickedItem.weather}
+          </h3>)}
         </div>
       </div>
     </div>

@@ -20,13 +20,11 @@
   visibility: hidden;
 
   margin: auto;
-
 }
 
-.modal__preview-opened{
+.modal__preview-opened {
   visibility: visible;
 }
-
 
 .modal__close-button {
   position: absolute;
@@ -54,7 +52,7 @@
 
   border-radius: 16px 16px 0px 0px;
 
-  margin:0;
+  margin: 0;
 }
 
 .modal__preview-description {
