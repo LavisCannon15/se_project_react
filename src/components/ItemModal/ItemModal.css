@@ -8,6 +8,8 @@
 
   bottom: 630px;
 
+  margin: auto;
+
   width: 498px;
   height: 610px;
 
@@ -17,7 +19,8 @@
 
   visibility: hidden;
 
-  margin: auto;
+  z-index: 1;
+
 }
 
 .modal__preview-opened {

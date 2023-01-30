@@ -3,7 +3,7 @@
   src: url("../../fonts/CabinetGrotesk-Medium.otf");
 }
 
-.modal__type-addClothesForm {
+.modal {
   position: fixed;
 
   bottom: 450px;
@@ -24,6 +24,8 @@
 
   width: 496px;
   height: 436px;
+
+
 }
 
 .modal__opened {
@@ -62,7 +64,7 @@
   cursor: pointer;
 }
 
-.modal__title {
+.modal__form-title {
   font-family: "Cabinet Grotesk";
   font-style: normal;
   font-weight: 700;
@@ -141,7 +143,7 @@
   color: #000000;
 }
 
-.modal__submit-button {
+.modal__form-button {
   color: #ffffff;
   display: flex;
   flex-direction: row;
