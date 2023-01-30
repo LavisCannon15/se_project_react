@@ -1,10 +1,9 @@
 @font-face {
-    font-family: 'Cabinet Grotesk';
-    src: url('../../fonts/CabinetGrotesk-Medium.otf');
+  font-family: "Cabinet Grotesk";
+  src: url("../../fonts/CabinetGrotesk-Medium.otf");
 }
 
 .weather__card {
-
   width: 1360px;
   height: 80px;
 
@@ -14,16 +13,9 @@
   text-decoration: none;
   list-style-type: none;
 
- 
   margin: auto;
   margin-top: 0;
   margin-bottom: 0;
-
-
-  
-
-  
- 
 }
 
 .weather__card-temperature {
@@ -41,13 +33,9 @@
 
   color: #ffffff;
 
-    margin-top: 20px;
+  margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 16px;
 
   white-space: nowrap;
-
-
-
-
 }

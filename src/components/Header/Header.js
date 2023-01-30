@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Header.css";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import avatarImage from "../../images/user_avatar.svg";
 
@@ -9,10 +8,7 @@ const currentDate = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
-export default function Header({
-  currentWeather,
-  setIsFormModalOpen,
-}) {
+export default function Header({ currentWeather, setIsFormModalOpen }) {
   //const [clickedItem, setClickedItem] = useState(null);
 
   const handleButtonClick = () => {

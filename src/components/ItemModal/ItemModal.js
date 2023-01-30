@@ -2,12 +2,14 @@ import React from "react";
 import "./ItemModal.css";
 //import testImage from "../../images/test_image.png"
 
-
-export default function ItemModal({ clickedItem,  isItemModalOpen, setIsItemModalOpen }) {
-      const handleButtonClick = () => {
-        setIsItemModalOpen({ isOpen: false });
-      };
-
+export default function ItemModal({
+  clickedItem,
+  isItemModalOpen,
+  setIsItemModalOpen,
+}) {
+  const handleButtonClick = () => {
+    setIsItemModalOpen({ isOpen: false });
+  };
 
   return (
     <div
@@ -37,9 +39,10 @@ export default function ItemModal({ clickedItem,  isItemModalOpen, setIsItemModa
             <h3 className="modal__preview-title">{clickedItem.name}</h3>
           )}
           {clickedItem && (
-          <h3 className="modal__preview-weather">
-            {"Weather: " + clickedItem.weather}
-          </h3>)}
+            <h3 className="modal__preview-weather">
+              {"Weather: " + clickedItem.weather}
+            </h3>
+          )}
         </div>
       </div>
     </div>

@@ -1,9 +1,7 @@
 @font-face {
-    font-family: 'Cabinet Grotesk';
-    src: url('../../fonts/CabinetGrotesk-Medium.otf');
+  font-family: "Cabinet Grotesk";
+  src: url("../../fonts/CabinetGrotesk-Medium.otf");
 }
-
-
 
 .suggested__wear {
   text-decoration: none;
@@ -18,29 +16,20 @@
 
   color: #000000;
 
-  
   padding-top: 40px;
-  padding-bottom:34px;
+  padding-bottom: 34px;
 
- 
-
-
-  display:flex;
+  display: flex;
 
   width: 1360px;
 
   margin: auto;
-
-
-
 }
-
-
 
 .cards__list {
   display: grid;
   justify-content: center;
- 
+
   grid-template-columns: repeat(auto-fit, 325px);
   grid-gap: 17px 20px;
 
@@ -50,10 +39,7 @@
 
   margin: auto;
 
-  padding:0;
-
-
-
+  padding: 0;
 }
 
 .card {
@@ -68,15 +54,10 @@
 
   overflow: hidden;
 
-  
   width: 328px;
   height: 328px;
 
-
   cursor: pointer;
-  
-
-
 }
 
 .card__title-box {
@@ -95,13 +76,8 @@
   margin-left: 116px;
   margin-right: 116px;
 
-
-
   background: #ffffff;
   border-radius: 4px;
-
-  
-
 }
 
 .card__title {
@@ -110,7 +86,6 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
-
 
   color: rgba(0, 0, 0, 0.6);
 
@@ -121,16 +96,13 @@
   flex-grow: 0;
 
   margin: 0;
-
-
 }
 
 .card__image {
-max-width: 100%; 
-max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 
-display:flex;
-align-items: center;
-justify-content: center;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

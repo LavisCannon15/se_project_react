@@ -7,7 +7,7 @@ export default function Main({
   currentWeather,
   currentWeatherCard,
   setIsItemModalOpen,
-  setClickedItem
+  setClickedItem,
 }) {
   return (
     <>

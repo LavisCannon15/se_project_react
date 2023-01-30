@@ -4,16 +4,13 @@
 }
 
 .modal {
-  position: absolute;
+  position: relative;
 
-  left: 472px;
-  right: 472px;
-  bottom: 440px;
-
-  visibility: hidden;
+  bottom: 550px;
 
   margin: auto;
 
+  visibility: hidden;
 
   width: 496px;
   height: 436px;
@@ -34,6 +31,7 @@
   flex-direction: column;
 
   padding-left: 28px;
+  padding-right: 28px;
 }
 
 .modal__exit-button {
