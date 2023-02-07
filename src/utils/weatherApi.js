@@ -1,7 +1,7 @@
 export const getForecastWeather = (location, APIkey) => {
   const parsedLocation = `${location.latitude}, ${location.longitude}`;
   return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=imperial&appid=${APIkey} `
+    `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=imperial&appid=${APIkey}`
   ).then((res) => {
     if (res.ok) {
       return res.json();
@@ -18,7 +18,8 @@ export const filterDataFromWeatherAPI = (data) => {
 
   const weather = {};
   weather.city = data.name;
-  weather.temperature = data.main.temp;
+  weather.temperatureF = Math.round(data.main.temp); //returns temperature in Fahrenheit default
+  weather.temperatureC = Math.round((weather.temperatureF - 32) * (5 / 9));
   return weather;
 };
 

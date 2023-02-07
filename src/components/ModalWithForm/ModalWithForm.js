@@ -1,5 +1,4 @@
 import React from "react";
-import "./ModalWithForm.css";
 
 export default function ModalWithForm({
   title,

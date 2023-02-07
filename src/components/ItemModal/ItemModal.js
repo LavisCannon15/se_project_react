@@ -11,6 +11,11 @@ export default function ItemModal({
     setIsItemModalOpen({ isOpen: false });
   };
 
+  const handleDeleteClick = () => {
+    setIsItemModalOpen({ isOpen: false });
+
+  };
+
   return (
     <div
       className={`modal__preview ${
@@ -35,9 +40,12 @@ export default function ItemModal({
         )}
 
         <div className="modal__preview-description">
-          {clickedItem && (
-            <h3 className="modal__preview-title">{clickedItem.name}</h3>
-          )}
+          <li className="modal__preview-title-delete-button">
+            {clickedItem && (
+              <h3 className="modal__preview-title">{clickedItem.name} </h3>
+            )}
+            <h3 className="modal__preview-delete-button" onClick={() => handleDeleteClick()}>Delete item</h3>
+          </li>
           {clickedItem && (
             <h3 className="modal__preview-weather">
               {"Weather: " + clickedItem.weather}

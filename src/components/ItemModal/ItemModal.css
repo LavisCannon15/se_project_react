@@ -20,7 +20,6 @@
   visibility: hidden;
 
   z-index: 1;
-
 }
 
 .modal__preview-opened {
@@ -76,8 +75,29 @@
   flex-direction: column;
 }
 
+.modal__preview-title-delete-button {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  align-items: baseline;
+
+  height: 24px;
+}
+
 .modal__preview-title {
   margin: 0;
+}
+
+.modal__preview-delete-button {
+  margin: 0;
+  padding-right: 32px;
+
+  color: #ff4d00;
+
+  cursor: pointer;
 }
 
 .modal__preview-weather {
