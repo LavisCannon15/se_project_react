@@ -22,6 +22,8 @@ import {
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
+ const api = new Api();
+
 export default function App() {
   //Manages opening of ItemModal
   const [isItemModalOpen, setIsItemModalOpen] = useState({
@@ -36,10 +38,6 @@ export default function App() {
   const [isFormModalOpen, setIsFormModalOpen] = useState({
     isOpen: false,
   });
-  const closeModalOnButtonClick = () => {
-    setIsFormModalOpen({ isOpen: false });
-  };
-
 
   //Retrives Temperature from WeatherAPI
   const [currentWeather, setCurrentWeather] = useState({});
@@ -68,7 +66,6 @@ export default function App() {
   };
 
 
-    const api = new Api();
 
     const [apiItems, setApiItems] = useState([]);
 
@@ -144,7 +141,7 @@ export default function App() {
         />
         <AddItemModal
           isFormModalOpen={isFormModalOpen}
-          closeModalOnButtonClick={closeModalOnButtonClick}
+          setIsFormModalOpen={setIsFormModalOpen}
           addItem={addItem}
         />
       </CurrentTemperatureUnitContext.Provider>

@@ -3,11 +3,11 @@
   "Content-Type": "application/json",
 };
 */
-
+//"https://my-json-server.typicode.com/LavisCannon15/se_project_react";
 export default class Api {
   constructor() {
-    this.baseUrl =
-      "https://my-json-server.typicode.com/LavisCannon15/se_project_react";
+    this.baseUrl = "http://localhost:3001";
+      
     this.headers = {
       "Content-Type": "application/json",
     };

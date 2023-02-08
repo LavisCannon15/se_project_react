@@ -5,7 +5,7 @@ import "./AddItemModal.css";
 
 export default function AddItemModal({
   isFormModalOpen,
-  closeModalOnButtonClick,
+  setIsFormModalOpen,
   addItem,
 }) {
   const [name, setName] = useState("");
@@ -24,10 +24,15 @@ export default function AddItemModal({
     setWeather(event.target.value);
   };
 
-    const handleSubmit = (evt) => {
-      evt.preventDefault();
-      addItem(name, imageUrl, weather);
-    };
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    addItem(name, imageUrl, weather);
+    closeModalOnButtonClick();
+  };
+
+  const closeModalOnButtonClick = () => {
+    setIsFormModalOpen({ isOpen: false });
+  };
 
   return (
     <ModalWithForm

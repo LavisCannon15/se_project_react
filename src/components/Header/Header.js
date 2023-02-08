@@ -48,7 +48,7 @@ export default function Header({ currentWeather, setIsFormModalOpen }) {
                   InsertNameHere
                   <img
                     src={avatarImage}
-                    alt=" "
+                    alt="user avatar"
                     className="header__user-avatar"
                   />
                 </p>
