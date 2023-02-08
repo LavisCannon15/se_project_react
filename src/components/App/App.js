@@ -95,6 +95,7 @@ export default function App() {
          .addItem(name, imageUrl, weather)
          .then((newItem) => {
            setApiItems([...apiItems, newItem]);
+           setIsFormModalOpen({ isOpen: false });
          })
          .catch((err) => console.log(err));
      };

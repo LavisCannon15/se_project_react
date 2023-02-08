@@ -27,7 +27,6 @@ export default function AddItemModal({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     addItem(name, imageUrl, weather);
-    closeModalOnButtonClick();
   };
 
   const closeModalOnButtonClick = () => {
