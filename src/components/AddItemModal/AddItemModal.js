@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import "./AddItemModal.css";
@@ -6,7 +6,29 @@ import "./AddItemModal.css";
 export default function AddItemModal({
   isFormModalOpen,
   closeModalOnButtonClick,
+  addItem,
 }) {
+  const [name, setName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [weather, setWeather] = useState("");
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleImageUrlChange = (event) => {
+    setImageUrl(event.target.value);
+  };
+
+  const handleWeatherChange = (event) => {
+    setWeather(event.target.value);
+  };
+
+    const handleSubmit = (evt) => {
+      evt.preventDefault();
+      addItem(name, imageUrl, weather);
+    };
+
   return (
     <ModalWithForm
       title="New garment"
@@ -14,6 +36,7 @@ export default function AddItemModal({
       buttonText="Add garment"
       onClose={closeModalOnButtonClick}
       isFormModalOpen={isFormModalOpen}
+      onSubmit={handleSubmit}
     >
       <fieldset className="modal__form-fieldset">
         <label className="modal__label">
@@ -27,6 +50,8 @@ export default function AddItemModal({
             minLength="1"
             maxLength="30"
             required
+            value={name}
+            onChange={handleNameChange}
           />
           <span className="modal__error" id="addName-error"></span>
         </label>
@@ -40,6 +65,8 @@ export default function AddItemModal({
             placeholder="Image URL"
             id="addLink"
             required
+            value={imageUrl}
+            onChange={handleImageUrlChange}
           />
           <span className="modal__error" id="addLink-error"></span>
         </label>
@@ -50,10 +77,13 @@ export default function AddItemModal({
 
         <div className="modal__form-input_checkbox">
           <input
-            type="checkbox"
+            type="radio"
             className="modal__form-input modal__form-input_type_checkbox"
-            name="Hot"
+            name="weather"
             id="hotCheckbox"
+            value="hot"
+            checked={weather === "hot"}
+            onChange={handleWeatherChange}
           />
           <label htmlFor="hotCheckbox" className="modal__form-checkbox-name">
             Hot
@@ -62,10 +92,13 @@ export default function AddItemModal({
 
         <div className="modal__form-input_checkbox">
           <input
-            type="checkbox"
+            type="radio"
             className="modal__form-input modal__form-input_type_checkbox"
-            name="Warm"
+            name="weather"
             id="warmCheckbox"
+            value="warm"
+            checked={weather === "warm"}
+            onChange={handleWeatherChange}
           />
           <label htmlFor="warmCheckbox" className="modal__form-checkbox-name">
             Warm
@@ -74,10 +107,13 @@ export default function AddItemModal({
 
         <div className="modal__form-input_checkbox">
           <input
-            type="checkbox"
+            type="radio"
             className="modal__form-input modal__form-input_type_checkbox"
-            name="Cold"
+            name="weather"
             id="coldCheckbox"
+            value="cold"
+            checked={weather === "cold"}
+            onChange={handleWeatherChange}
           />
           <label htmlFor="coldCheckbox" className="modal__form-checkbox-name">
             Cold

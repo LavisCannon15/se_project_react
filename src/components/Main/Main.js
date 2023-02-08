@@ -1,28 +1,25 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
+
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 import "./Main.css";
 
-import { defaultClothingItems } from "../../utils/clothingItems";
-
 export default function Main({
   currentWeather,
-  currentWeatherCard,
   setIsItemModalOpen,
   setClickedItem,
+  filteredApiItems,
 }) {
-  const filteredItems = defaultClothingItems.filter(
-    (item) => item.weather === currentWeatherCard
-  );
+  
 
-  const CardList = ({ filteredItems, setIsItemModalOpen, setClickedItem }) => (
+  const CardList = ({ filteredApiItems, setIsItemModalOpen, setClickedItem }) => (
     <div className="cards__list">
-      {filteredItems.map((item) => (
+      {filteredApiItems.map((item) => (
         <ItemCard
-          key={item._id}
+          key={item.id}
           item={item}
           setIsItemModalOpen={setIsItemModalOpen}
           setClickedItem={setClickedItem}
@@ -31,17 +28,13 @@ export default function Main({
     </div>
   );
 
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
-    const { currentTemperatureUnit } = useContext(
-      CurrentTemperatureUnitContext
-    );
-
-    const currentTemp = () => {
-      return currentTemperatureUnit === "F"
-        ? currentWeather.temperatureF
-        : currentWeather.temperatureC;
-    };
-
+  const currentTemp = () => {
+    return currentTemperatureUnit === "F"
+      ? currentWeather.temperatureF
+      : currentWeather.temperatureC;
+  };
 
   return (
     <>
@@ -50,11 +43,13 @@ export default function Main({
       <h3 className="suggested__wear">
         {"Today is " +
           currentTemp() +
-          " °" + currentTemperatureUnit + "/ You may want to wear:"}
+          " °" +
+          currentTemperatureUnit +
+          "/ You may want to wear:"}
       </h3>
 
       <CardList
-        filteredItems={filteredItems}
+        filteredApiItems={filteredApiItems}
         setIsItemModalOpen={setIsItemModalOpen}
         setClickedItem={setClickedItem}
       />

@@ -3,6 +3,10 @@
   src: url("../../fonts/CabinetGrotesk-Medium.otf");
 }
 
+.footer {
+  margin: auto;
+}
+
 .footer__content {
   display: flex;
   justify-content: space-between;
@@ -22,8 +26,7 @@
   width: 1360px;
   height: 20px;
 
-  margin: auto;
-
   padding-top: 85px;
   padding-bottom: 24px;
+
 }

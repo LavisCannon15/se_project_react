@@ -2,27 +2,27 @@ import "./ClothesSection.css";
 import React from "react";
 import ItemCard from "../ItemCard/ItemCard";
 
-import { defaultClothingItems } from "../../utils/clothingItems";
 
 export default function ClothesSection({
-  currentWeatherCard,
-  setIsFormModalOpen,
   setIsItemModalOpen,
   setClickedItem,
+  filteredApiItems
 }) {
   const handleButtonClick = () => {
-    setIsFormModalOpen({ isOpen: true });
+    setIsItemModalOpen({ isOpen: true });
   };
 
-  const filteredItems = defaultClothingItems.filter(
+  /*
+  const filteredItems = apiItems.filter(
     (item) => item.weather === currentWeatherCard
   );
+  */
 
-  const CardList = ({ filteredItems, setIsItemModalOpen, setClickedItem }) => (
+  const CardList = ({ filteredApiItems, setIsItemModalOpen, setClickedItem }) => (
     <div className="profile__clothes-cards-list">
-      {filteredItems.map((item) => (
+      {filteredApiItems.map((item) => (
         <ItemCard
-          key={item._id}
+          key={item.id}
           item={item}
           setIsItemModalOpen={setIsItemModalOpen}
           setClickedItem={setClickedItem}
@@ -44,7 +44,7 @@ export default function ClothesSection({
       </div>
 
       <CardList
-        filteredItems={filteredItems}
+        filteredApiItems={filteredApiItems}
         setIsItemModalOpen={setIsItemModalOpen}
         setClickedItem={setClickedItem}
       />

@@ -6,14 +6,15 @@ export default function ItemModal({
   clickedItem,
   isItemModalOpen,
   setIsItemModalOpen,
+  deleteItem
 }) {
   const handleButtonClick = () => {
     setIsItemModalOpen({ isOpen: false });
   };
 
-  const handleDeleteClick = () => {
+  const handleCardDelete = () => {
     setIsItemModalOpen({ isOpen: false });
-
+    deleteItem(clickedItem.id);
   };
 
   return (
@@ -35,7 +36,7 @@ export default function ItemModal({
           <img
             className="modal__preview-image"
             alt={clickedItem.name}
-            src={clickedItem.link}
+            src={clickedItem.imageUrl}
           />
         )}
 
@@ -44,7 +45,12 @@ export default function ItemModal({
             {clickedItem && (
               <h3 className="modal__preview-title">{clickedItem.name} </h3>
             )}
-            <h3 className="modal__preview-delete-button" onClick={() => handleDeleteClick()}>Delete item</h3>
+            <h3
+              className="modal__preview-delete-button"
+              onClick={() => handleCardDelete()}
+            >
+              Delete item
+            </h3>
           </li>
           {clickedItem && (
             <h3 className="modal__preview-weather">

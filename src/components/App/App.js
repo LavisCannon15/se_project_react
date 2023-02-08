@@ -9,6 +9,8 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 
 import Profile from "../Profile/Profile";
 
+import Api from "../../utils/api";
+
 import "./App.css";
 
 import { location } from "../../utils/constants";
@@ -65,6 +67,46 @@ export default function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+
+    const api = new Api();
+
+    const [apiItems, setApiItems] = useState([]);
+
+    useEffect(() => {
+      api
+        .getItems()
+        .then((data) => setApiItems(data))
+        .catch((err) => console.log(err))
+    }, []);
+
+     const filteredApiItems = apiItems.filter(
+       (item) => item.weather === currentWeatherCard
+     );
+
+     const deleteItem = (itemId) => {
+       api
+         .deleteItem(itemId)
+         .then(() => {
+           setApiItems(apiItems.filter((item) => item.id !== itemId));
+         })
+         .catch((err) => console.log(err));
+     };
+
+
+     const addItem = (name, imageUrl, weather) => {
+       api
+         .addItem(name, imageUrl, weather)
+         .then((newItem) => {
+           setApiItems([...apiItems, newItem]);
+         })
+         .catch((err) => console.log(err));
+     };
+
+     
+
+
+     
+
   return (
     <div className="app">
       <CurrentTemperatureUnitContext.Provider
@@ -79,16 +121,16 @@ export default function App() {
             <Route exact path={"/"}>
               <Main
                 currentWeather={currentWeather}
-                currentWeatherCard={currentWeatherCard}
                 setIsItemModalOpen={setIsItemModalOpen}
                 setClickedItem={setClickedItem}
+                filteredApiItems={filteredApiItems}
               />
             </Route>
             <Route path={"/profile"}>
               <Profile
-                currentWeatherCard={currentWeatherCard}
                 setIsItemModalOpen={setIsItemModalOpen}
                 setClickedItem={setClickedItem}
+                filteredApiItems={filteredApiItems}
               />
             </Route>
           </Switch>
@@ -98,10 +140,12 @@ export default function App() {
           clickedItem={clickedItem}
           isItemModalOpen={isItemModalOpen}
           setIsItemModalOpen={setIsItemModalOpen}
+          deleteItem={deleteItem}
         />
         <AddItemModal
           isFormModalOpen={isFormModalOpen}
           closeModalOnButtonClick={closeModalOnButtonClick}
+          addItem={addItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

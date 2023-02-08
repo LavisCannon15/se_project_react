@@ -6,6 +6,7 @@ export default function ModalWithForm({
   buttonText,
   onClose,
   isFormModalOpen,
+  onSubmit,
   children,
 }) {
   return (
@@ -14,7 +15,7 @@ export default function ModalWithForm({
         isFormModalOpen.isOpen && "modal__opened"
       } modal__type-${name}`}
     >
-      <form className="modal__form" name={name}>
+      <form className="modal__form" name={name} onSubmit={onSubmit}>
         <button
           className="modal__exit-button"
           type="button"
@@ -22,7 +23,7 @@ export default function ModalWithForm({
         />
         <h2 className="modal__title">{title}</h2>
         {children}
-        <button className="modal__submit-button" type="submit" disabled>
+        <button className="modal__submit-button" type="submit" >
           {buttonText}
         </button>
       </form>

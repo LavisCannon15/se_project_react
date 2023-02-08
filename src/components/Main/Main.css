@@ -24,6 +24,9 @@
   width: 1360px;
 
   margin: auto;
+
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .cards__list {
@@ -38,6 +41,9 @@
   width: 1360px;
 
   margin: auto;
+
+  margin-top: 0;
+  margin-bottom: 0;
 
   padding: 0;
 }

@@ -4,19 +4,17 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 
 export default function Profile({
-  currentWeatherCard,
-  setIsFormModalOpen,
   setIsItemModalOpen,
   setClickedItem,
+  filteredApiItems
 }) {
   return (
     <div className="profile">
       <SideBar />
       <ClothesSection
-        currentWeatherCard={currentWeatherCard}
-        setIsFormModalOpen={setIsFormModalOpen}
         setIsItemModalOpen={setIsItemModalOpen}
         setClickedItem={setClickedItem}
+        filteredApiItems={filteredApiItems}
       />
     </div>
   );

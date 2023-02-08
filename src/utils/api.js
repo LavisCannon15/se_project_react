@@ -6,7 +6,8 @@
 
 export default class Api {
   constructor() {
-    this.baseUrl = "http://localhost:3000";
+    this.baseUrl =
+      "https://my-json-server.typicode.com/LavisCannon15/se_project_react";
     this.headers = {
       "Content-Type": "application/json",
     };
@@ -31,16 +32,12 @@ export default class Api {
     }).then(this._processResponse);
   }
 
-
-  deleteItem(id)
-  {
+  deleteItem(id) {
     return fetch(`${this.baseUrl}/items/${id}`, {
       method: "DELETE",
       headers: this.headers,
-    }).then(this._processResponse); 
+    }).then(this._processResponse);
   }
-
-
 
   _processResponse = (res) => {
     if (res.ok) {
@@ -49,10 +46,7 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     }
   };
-
 }
-
-
 
 /*
 const getItems = async () => {

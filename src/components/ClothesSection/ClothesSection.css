@@ -4,24 +4,23 @@
 }
 
 .profile__clothes {
-  width: 1360px;
+  width: 1015px;
 
   margin: auto;
+
+  padding-left: 116px;
 }
 
 .profile__clothes-header {
   display: flex;
   flex-direction: row;
 
-  width: 1360px;
+  width: 1015px;
 
-  margin: auto;
+  margin: 0;
 
   
-  padding-bottom: 16px;
-
-  padding-left: 125px;
-  
+  padding-bottom: 16px; 
 
   font-family: "Cabinet Grotesk";
   font-style: normal;
@@ -54,8 +53,18 @@
 
   list-style: none;
 
+  margin: 0;
 
+
+
+/*
   margin-right: 100px;
-
   padding: 0;
+  */
+
+  width: 1015px;
+
+  padding-right: 100px;
+
+ 
 }
