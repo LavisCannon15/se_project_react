@@ -3,7 +3,8 @@
   src: url("../../fonts/CabinetGrotesk-Medium.otf");
 }
 
-.modal__type-addClothesForm {
+
+.modal__type-loginForm {
   position: fixed;
 
   bottom: 450px;
@@ -23,12 +24,13 @@
   visibility: hidden;
 
   width: 496px;
-  height: 436px;
+  height: 304px;
 }
 
 .modal__opened {
   visibility: visible;
 }
+
 
 .modal__form {
   background: #ffffff;
@@ -43,6 +45,7 @@
   padding-left: 28px;
   padding-right: 28px;
 }
+
 
 .modal__exit-button {
   position: absolute;
@@ -101,14 +104,6 @@
   margin: 0;
 }
 
-
-.modal__form-input_checkbox {
-  display: flex;
-  flex-direction: row;
-
-  height:27px;
-}
-
 .modal__form-input {
   color: #000000;
 
@@ -126,25 +121,6 @@
   padding-right: 0;
 }
 
-.modal__form-input_type_checkbox {
-  margin-left: -210px;
-  margin-bottom: 8px;
-
-  height: 16px;
-}
-
-.modal__form-checkbox-name {
-  margin-left: -210px;
-
-  font-family: "Cabinet Grotesk";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  /* identical to box height, or 125% */
-
-  color: #000000;
-}
 
 .modal__submit-button {
   color: #ffffff;

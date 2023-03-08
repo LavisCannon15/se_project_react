@@ -6,8 +6,9 @@
 //"https://my-json-server.typicode.com/LavisCannon15/se_project_react";
 export default class Api {
   constructor() {
-    this.baseUrl =
-      "https://my-json-server.typicode.com/LavisCannon15/se_project_react";
+    this.baseUrl = "https://my-json-server.typicode.com/LavisCannon15/se_project_react";
+
+    //this.baseUrl = "http://localhost:3000";
 
     this.headers = {
       "Content-Type": "application/json",
