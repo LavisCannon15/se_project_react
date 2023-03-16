@@ -5,11 +5,15 @@ import ItemCard from "../ItemCard/ItemCard";
 
 export default function ClothesSection({
   setIsItemModalOpen,
+  setIsFormModalOpen,
   setClickedItem,
-  filteredApiItems
+  filteredApiItems,
+  onCardLike,
+  currentUser,
+  clickedItem
 }) {
-  const handleButtonClick = () => {
-    setIsItemModalOpen({ isOpen: true });
+  const handleAddClothesClick = () => {
+    setIsFormModalOpen({ isOpen: true });
   };
 
   /*
@@ -18,14 +22,30 @@ export default function ClothesSection({
   );
   */
 
-  const CardList = ({ filteredApiItems, setIsItemModalOpen, setClickedItem }) => (
+   const currentUserItems = filteredApiItems.filter(
+     (item) => item.user.id === currentUser.id
+   );
+
+
+
+  const CardList = ({
+    currentUserItems,
+    setIsItemModalOpen,
+    setClickedItem,
+    onCardLike,
+    currentUser,
+    clickedItem
+  }) => (
     <div className="profile__clothes-cards-list">
-      {filteredApiItems.map((item) => (
+      {currentUserItems.map((item) => (
         <ItemCard
           key={item.id}
           item={item}
           setIsItemModalOpen={setIsItemModalOpen}
           setClickedItem={setClickedItem}
+          onCardLike={onCardLike}
+          currentUser={currentUser}
+          clickedItem={clickedItem}
         />
       ))}
     </div>
@@ -37,16 +57,19 @@ export default function ClothesSection({
         <p className="profile__clothes-title">Your items</p>
         <p
           className="profile__clothes-add-button"
-          onClick={handleButtonClick}
+          onClick={handleAddClothesClick}
         >
           + Add new
         </p>
       </div>
 
       <CardList
-        filteredApiItems={filteredApiItems}
+        currentUserItems={currentUserItems}
         setIsItemModalOpen={setIsItemModalOpen}
         setClickedItem={setClickedItem}
+        onCardLike={onCardLike}
+        currentUser={currentUser}
+        clickedItem={clickedItem}
       />
     </div>
   );

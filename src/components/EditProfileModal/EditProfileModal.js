@@ -6,6 +6,7 @@ import "./EditProfileModal.css";
 export default function EditProfileModal({
   isProfileModalOpen,
   setIsProfileModalOpen,
+  handleUpdateUser,
 }) {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -20,6 +21,7 @@ export default function EditProfileModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    handleUpdateUser(name, avatar);
   };
 
   const closeModalOnButtonClick = () => {

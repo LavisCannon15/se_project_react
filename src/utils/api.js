@@ -6,19 +6,23 @@
 //"https://my-json-server.typicode.com/LavisCannon15/se_project_react";
 export default class Api {
   constructor() {
-    this.baseUrl = "https://my-json-server.typicode.com/LavisCannon15/se_project_react";
+    //this.baseUrl =
+      //"https://my-json-server.typicode.com/LavisCannon15/se_project_react";
 
-    //this.baseUrl = "http://localhost:3000";
+    this.baseUrl = "http://localhost:3001";
 
     this.headers = {
       "Content-Type": "application/json",
     };
   }
 
-  getItems() {
+  getItems(token) {
     return fetch(`${this.baseUrl}/items`, {
       method: "GET",
-      headers: this.headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
     }).then(this._processResponse);
   }
 
@@ -38,6 +42,26 @@ export default class Api {
     return fetch(`${this.baseUrl}/items/${id}`, {
       method: "DELETE",
       headers: this.headers,
+    }).then(this._processResponse);
+  }
+
+  addCardlike(id,token) {
+    return fetch(`${this.baseUrl}/items/${id}/likes`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    }).then(this._processResponse);
+  }
+
+  removeCardlike(id,token) {
+    return fetch(`${this.baseUrl}/items/${id}/likes`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
     }).then(this._processResponse);
   }
 

@@ -79,7 +79,7 @@ export default function App() {
 
   useEffect(() => {
     api
-      .getItems()
+      .getItems(token)
       .then((data) => setApiItems(data))
       .catch((err) => console.log(err));
   }, []);
@@ -125,8 +125,11 @@ export default function App() {
     isOpen: false,
   });
 
+
+
+  const token = localStorage.getItem("jwt");
+
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
     if (token) {
       auth
         .checkToken(token)
@@ -141,10 +144,11 @@ export default function App() {
   const handleSignUp = (name, avatar, email, password) => {
     auth
       .signup(name, avatar, email, password)
-      .then(() => {
+      .then((res) => {
         setIsRegisterModalOpen({ isOpen: false });
         setIsLoggedIn(true);
         auth.signin(email, password);
+        localStorage.setItem("jwt", res.token);
       })
       .catch((err) => console.log(err));
   };
@@ -155,15 +159,76 @@ export default function App() {
       .then((res) => {
         setIsLoginModalOpen({ isOpen: false });
         setIsLoggedIn(true);
+        setCurrentUser(res)
         localStorage.setItem("jwt", res.token);
       })
       .catch((err) => console.log(err));
   };
 
-  const handleSignOut = () => {
-    // make API request to sign out user
-    // set isAuthenticated and userData state based on response
+  const handleSignOut = (evt) => {
+    evt.preventDefault();
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
   };
+
+const handleUpdateUser = (name, avatar) => {
+  api
+    .updateUser(name, avatar)
+    .then((res) => {
+      setIsProfileModalOpen({isOpen : false})
+      setCurrentUser(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+/*
+const onCardLike = ({id, isLiked}) => {
+  isLiked
+    ? api
+        .addCardlike(id, token)
+        .then((updatedCard) => {
+          setApiItems()
+        })
+        .catch((err) => console.log(err))
+    : api
+        .removeCardlike(id, token)
+        .then((updatedCard) => {
+          setApiItems()
+        })
+        .catch((err) => console.log(err));
+}
+*/
+
+
+const onCardLike = ({ id, isLiked }) => {
+  const updatedItems = apiItems.map((item) => {
+    if (item.id === id) {
+      return { ...item, isLiked };
+    }
+    return item;
+  });
+
+  isLiked
+    ? api
+        .addCardlike(id, token)
+        .then(() => {
+          setApiItems(updatedItems);
+        })
+        .catch((err) => console.log(err))
+    : api
+        .removeCardlike(id, token)
+        .then(() => {
+          setApiItems(updatedItems);
+        })
+        .catch((err) => console.log(err));
+};
+
+
+
 
   return (
     <div className="app">
@@ -187,13 +252,22 @@ export default function App() {
                   setIsItemModalOpen={setIsItemModalOpen}
                   setClickedItem={setClickedItem}
                   filteredApiItems={filteredApiItems}
+                  onCardLike={onCardLike}
+                  currentUser={currentUser}
+                  clickedItem={clickedItem}
                 />
               </Route>
               <ProtectedRoute path="/profile" isLoggedIn={isLoggedIn}>
                 <Profile
                   setIsItemModalOpen={setIsItemModalOpen}
+                  setIsFormModalOpen={setIsFormModalOpen}
                   setClickedItem={setClickedItem}
                   filteredApiItems={filteredApiItems}
+                  setIsProfileModalOpen={setIsProfileModalOpen}
+                  handleSignOut={handleSignOut}
+                  onCardLike={onCardLike}
+                  currentUser={currentUser}
+                  clickedItem={clickedItem}
                 />
               </ProtectedRoute>
             </Switch>
@@ -204,6 +278,7 @@ export default function App() {
             isItemModalOpen={isItemModalOpen}
             setIsItemModalOpen={setIsItemModalOpen}
             deleteItem={deleteItem}
+            currentUser={currentUser}
           />
           <AddItemModal
             isFormModalOpen={isFormModalOpen}
@@ -219,6 +294,11 @@ export default function App() {
             isRegisterModalOpen={isRegisterModalOpen}
             setIsRegisterModalOpen={setIsRegisterModalOpen}
             handleSignUp={handleSignUp}
+          />
+          <EditProfileModal
+            isProfileModalOpen={isProfileModalOpen}
+            setIsProfileModalOpen={setIsProfileModalOpen}
+            handleUpdateUser={handleUpdateUser}
           />
         </CurrentTemperatureUnitContext.Provider>
       </CurrentUserContext.Provider>

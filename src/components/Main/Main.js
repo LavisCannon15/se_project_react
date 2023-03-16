@@ -12,10 +12,20 @@ export default function Main({
   setIsItemModalOpen,
   setClickedItem,
   filteredApiItems,
+  onCardLike,
+  currentUser,
+  clickedItem
 }) {
   
 
-  const CardList = ({ filteredApiItems, setIsItemModalOpen, setClickedItem }) => (
+  const CardList = ({
+    filteredApiItems,
+    setIsItemModalOpen,
+    setClickedItem,
+    onCardLike,
+    currentUser,
+    clickedItem,
+  }) => (
     <div className="cards__list">
       {filteredApiItems.map((item) => (
         <ItemCard
@@ -23,6 +33,9 @@ export default function Main({
           item={item}
           setIsItemModalOpen={setIsItemModalOpen}
           setClickedItem={setClickedItem}
+          onCardLike={onCardLike}
+          currentUser={currentUser}
+          clickedItem={clickedItem}
         />
       ))}
     </div>
@@ -52,6 +65,9 @@ export default function Main({
         filteredApiItems={filteredApiItems}
         setIsItemModalOpen={setIsItemModalOpen}
         setClickedItem={setClickedItem}
+        onCardLike={onCardLike}
+        currentUser={currentUser}
+        clickedItem={clickedItem}
       />
     </>
   );

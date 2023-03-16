@@ -6,7 +6,8 @@ export default function ItemModal({
   clickedItem,
   isItemModalOpen,
   setIsItemModalOpen,
-  deleteItem
+  deleteItem,
+  currentUser
 }) {
   const handleButtonClick = () => {
     setIsItemModalOpen({ isOpen: false });
@@ -16,6 +17,15 @@ export default function ItemModal({
     setIsItemModalOpen({ isOpen: false });
     deleteItem(clickedItem.id);
   };
+  
+
+  const isOwn = clickedItem && clickedItem.user.id === currentUser.id;
+  const itemDeleteButtonClassName = `modal__preview-delete-button ${
+    isOwn
+      ? "modal__preview-delete-button_visible"
+      : "modal__preview-delete-button_visible"
+  }`;
+
 
   return (
     <div
@@ -46,7 +56,7 @@ export default function ItemModal({
               <h3 className="modal__preview-title">{clickedItem.name} </h3>
             )}
             <h3
-              className="modal__preview-delete-button"
+              className={itemDeleteButtonClassName}
               onClick={() => handleCardDelete()}
             >
               Delete item

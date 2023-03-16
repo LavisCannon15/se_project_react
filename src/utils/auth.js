@@ -1,18 +1,14 @@
 export default class Auth {
   constructor() {
-    this.baseUrl = "https://my-json-server.typicode.com/LavisCannon15/se_project_react";
+    //this.baseUrl = "https://my-json-server.typicode.com/LavisCannon15/se_project_react";
 
-    //this.baseUrl = "http://localhost:3000";
-
-    this.headers = {
-      "Content-Type": "application/json",
-    };
+    this.baseUrl = "http://localhost:3001";
   }
 
   signup(name, avatar, email, password) {
     return fetch(`${this.baseUrl}/signup`, {
       method: "POST",
-      headers: this.headers,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name,
         avatar,
@@ -25,7 +21,7 @@ export default class Auth {
   signin(email, password) {
     return fetch(`${this.baseUrl}/signin`, {
       method: "POST",
-      headers: this.headers,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email,
         password,
@@ -43,6 +39,19 @@ export default class Auth {
     }).then(this._processResponse);
   }
 
+  updateUser(name, avatar) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+      body: JSON.stringify({
+        name,
+        avatar,
+      }),
+    }).then(this._processResponse);
+  }
 
   _processResponse = (res) => {
     if (res.ok) {

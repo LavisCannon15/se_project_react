@@ -3,14 +3,9 @@
   src: url("../../fonts/CabinetGrotesk-Medium.otf");
 }
 
-.profile__user-info {
-  list-style: none;
-  width: 229px;
-  height: 56px;
-}
 
-.profile__user-name {
-  margin: 0;
+.profile__menu {
+  list-style: none;
 
   font-family: "Cabinet Grotesk", sans-serif;
   font-style: normal;
@@ -20,13 +15,44 @@
 
   color: #000000;
 
+}
+
+.profile__user-info {
+    margin: 0;
+
+  width: 229px;
+  height: 56px;
+
+}
+
+.profile__user-name {  
+  margin: 0;
+
   width: 229px;
   height: 56px;
 }
 
 .profile__user-avatar {
-  padding-left: 12px;
+  padding-right: 12px;
 
   width: 40px;
   height: 40px;
+}
+
+
+.profile__change-info {
+  margin: 0;
+
+  padding-top: 24px;
+
+  cursor: pointer;
+
+}
+
+.profile__logout {
+  margin: 0;
+
+  padding-top: 8px;
+
+  cursor: pointer;
 }
