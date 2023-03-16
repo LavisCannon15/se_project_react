@@ -4,6 +4,8 @@
 };
 */
 //"https://my-json-server.typicode.com/LavisCannon15/se_project_react";
+
+
 export default class Api {
   constructor() {
     //this.baseUrl =
@@ -26,10 +28,13 @@ export default class Api {
     }).then(this._processResponse);
   }
 
-  addItem(name, imageUrl, weather) {
+  addItem(name, imageUrl, weather,token) {
     return fetch(`${this.baseUrl}/items`, {
       method: "POST",
-      headers: this.headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         name,
         imageUrl,
@@ -38,10 +43,13 @@ export default class Api {
     }).then(this._processResponse);
   }
 
-  deleteItem(id) {
+  deleteItem(id,token) {
     return fetch(`${this.baseUrl}/items/${id}`, {
       method: "DELETE",
-      headers: this.headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
     }).then(this._processResponse);
   }
 

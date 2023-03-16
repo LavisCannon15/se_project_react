@@ -88,18 +88,18 @@ export default function App() {
     (item) => item.weather === currentWeatherCard
   );
 
-  const deleteItem = (itemId) => {
+  const deleteItem = (itemId, token) => {
     api
-      .deleteItem(itemId)
+      .deleteItem(itemId, token)
       .then(() => {
         setApiItems(apiItems.filter((item) => item.id !== itemId));
       })
       .catch((err) => console.log(err));
   };
 
-  const addItem = (name, imageUrl, weather) => {
+  const addItem = (name, imageUrl, weather, token) => {
     api
-      .addItem(name, imageUrl, weather)
+      .addItem(name, imageUrl, weather, token)
       .then((newItem) => {
         setApiItems([...apiItems, newItem]);
         setIsFormModalOpen({ isOpen: false });
@@ -132,7 +132,7 @@ export default function App() {
   useEffect(() => {
     if (token) {
       auth
-        .checkToken(token)
+        .getUser
         .then((res) => {
           setIsLoggedIn(true);
           setCurrentUser(res.data);
