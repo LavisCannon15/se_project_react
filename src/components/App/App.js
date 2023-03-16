@@ -79,13 +79,13 @@ export default function App() {
 
   const token = localStorage.getItem("jwt");
 
-
   useEffect(() => {
     api
       .getItems(token)
       .then((data) => setApiItems(data))
       .catch((err) => console.log(err));
   }, []);
+  
 
   const filteredApiItems = apiItems.filter(
     (item) => item.weather === currentWeatherCard
@@ -130,7 +130,7 @@ export default function App() {
 
   useEffect(() => {
     if (token) {
-      auth.getUser()
+      auth.getUser(token)
         .then((res) => {
           setIsLoggedIn(true);
           setCurrentUser(res.data);
