@@ -29,7 +29,8 @@ export default class Auth {
         email,
         password,
       }),
-    }).then(this._processResponse);
+    })
+      .then(this._processResponse)
   }
 
   getUser() {

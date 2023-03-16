@@ -19,7 +19,7 @@ export default function ItemModal({
   };
   
 
-  const isOwn = clickedItem && clickedItem.user.id === currentUser.id;
+  const isOwn = clickedItem && clickedItem.user._id === currentUser.id;
   const itemDeleteButtonClassName = `modal__preview-delete-button ${
     isOwn
       ? "modal__preview-delete-button_visible"

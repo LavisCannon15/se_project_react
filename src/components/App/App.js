@@ -79,13 +79,23 @@ export default function App() {
 
   const token = localStorage.getItem("jwt");
 
+  /*
   useEffect(() => {
     api
       .getItems(token)
       .then((data) => setApiItems(data))
       .catch((err) => console.log(err));
   }, []);
+  */
   
+  useEffect(() => {
+    if (token) {
+      api
+        .getItems(token)
+        .then((data) => setApiItems(data))
+        .catch((err) => console.log(err));
+    }
+  }, []);
 
   const filteredApiItems = apiItems.filter(
     (item) => item.weather === currentWeatherCard
@@ -139,17 +149,22 @@ export default function App() {
     }
   }, []);
 
-  const handleSignUp = (name, avatar, email, password) => {
-    auth
-      .signup(name, avatar, email, password)
-      .then((res) => {
-        setIsRegisterModalOpen({ isOpen: false });
-        setIsLoggedIn(true);
-        auth.signin(email, password);
-        localStorage.setItem("jwt", res.token);
-      })
-      .catch((err) => console.log(err));
-  };
+const handleSignUp = (name, avatar, email, password) => {
+  auth
+    .signup(name, avatar, email, password)
+    .then((res) => {
+      auth
+        .signin(email, password)
+        .then(() => {
+          setIsRegisterModalOpen({ isOpen: false });
+          setIsLoggedIn(true);
+          setCurrentUser(res);
+          localStorage.setItem("jwt", res.token);
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
+};
 
   const handleSignIn = (email, password) => {
     auth
