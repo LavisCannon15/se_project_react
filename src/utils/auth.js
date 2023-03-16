@@ -21,7 +21,10 @@ export default class Auth {
   signin(email, password) {
     return fetch(`${this.baseUrl}/signin`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
       body: JSON.stringify({
         email,
         password,

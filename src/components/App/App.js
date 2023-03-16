@@ -77,6 +77,9 @@ export default function App() {
 
   const [apiItems, setApiItems] = useState([]);
 
+  const token = localStorage.getItem("jwt");
+
+
   useEffect(() => {
     api
       .getItems(token)
@@ -125,14 +128,9 @@ export default function App() {
     isOpen: false,
   });
 
-
-
-  const token = localStorage.getItem("jwt");
-
   useEffect(() => {
     if (token) {
-      auth
-        .getUser
+      auth.getUser()
         .then((res) => {
           setIsLoggedIn(true);
           setCurrentUser(res.data);
@@ -159,7 +157,7 @@ export default function App() {
       .then((res) => {
         setIsLoginModalOpen({ isOpen: false });
         setIsLoggedIn(true);
-        setCurrentUser(res)
+        setCurrentUser(res);
         localStorage.setItem("jwt", res.token);
       })
       .catch((err) => console.log(err));
@@ -171,21 +169,19 @@ export default function App() {
     setIsLoggedIn(false);
   };
 
-const handleUpdateUser = (name, avatar) => {
-  api
-    .updateUser(name, avatar)
-    .then((res) => {
-      setIsProfileModalOpen({isOpen : false})
-      setCurrentUser(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+  const handleUpdateUser = (name, avatar) => {
+    api
+      .updateUser(name, avatar)
+      .then((res) => {
+        setIsProfileModalOpen({ isOpen: false });
+        setCurrentUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-
-
-/*
+  /*
 const onCardLike = ({id, isLiked}) => {
   isLiked
     ? api
@@ -203,32 +199,28 @@ const onCardLike = ({id, isLiked}) => {
 }
 */
 
+  const onCardLike = ({ id, isLiked }) => {
+    const updatedItems = apiItems.map((item) => {
+      if (item.id === id) {
+        return { ...item, isLiked };
+      }
+      return item;
+    });
 
-const onCardLike = ({ id, isLiked }) => {
-  const updatedItems = apiItems.map((item) => {
-    if (item.id === id) {
-      return { ...item, isLiked };
-    }
-    return item;
-  });
-
-  isLiked
-    ? api
-        .addCardlike(id, token)
-        .then(() => {
-          setApiItems(updatedItems);
-        })
-        .catch((err) => console.log(err))
-    : api
-        .removeCardlike(id, token)
-        .then(() => {
-          setApiItems(updatedItems);
-        })
-        .catch((err) => console.log(err));
-};
-
-
-
+    isLiked
+      ? api
+          .addCardlike(id, token)
+          .then(() => {
+            setApiItems(updatedItems);
+          })
+          .catch((err) => console.log(err))
+      : api
+          .removeCardlike(id, token)
+          .then(() => {
+            setApiItems(updatedItems);
+          })
+          .catch((err) => console.log(err));
+  };
 
   return (
     <div className="app">

@@ -28,7 +28,7 @@ export default class Api {
     }).then(this._processResponse);
   }
 
-  addItem(name, imageUrl, weather,token) {
+  addItem(name, imageUrl, weather, token) {
     return fetch(`${this.baseUrl}/items`, {
       method: "POST",
       headers: {
