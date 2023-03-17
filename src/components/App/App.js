@@ -140,7 +140,7 @@ export default function App() {
 
   useEffect(() => {
     if (token) {
-      auth.getUser(token)
+      auth.getUser()
         .then((res) => {
           setIsLoggedIn(true);
           setCurrentUser(res.data);
@@ -173,6 +173,7 @@ const handleSignUp = (name, avatar, email, password) => {
         setIsLoginModalOpen({ isOpen: false });
         setIsLoggedIn(true);
         setCurrentUser(res);
+        console.log(res);
         localStorage.setItem("jwt", res.token);
       })
       .catch((err) => console.log(err));
