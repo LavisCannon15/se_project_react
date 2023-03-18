@@ -18,22 +18,22 @@ export default class Api {
     };
   }
 
-  getItems(token) {
+  getItems() {
     return fetch(`${this.baseUrl}/items`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then(this._processResponse);
   }
 
-  addItem(name, imageUrl, weather, token) {
+  addItem(name, imageUrl, weather) {
     return fetch(`${this.baseUrl}/items`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       body: JSON.stringify({
         name,
@@ -43,7 +43,7 @@ export default class Api {
     }).then(this._processResponse);
   }
 
-  deleteItem(id,token) {
+  deleteItem(id) {
     return fetch(`${this.baseUrl}/items/${id}`, {
       method: "DELETE",
       headers: {
@@ -53,22 +53,22 @@ export default class Api {
     }).then(this._processResponse);
   }
 
-  addCardlike(id,token) {
+  addCardlike(id) {
     return fetch(`${this.baseUrl}/items/${id}/likes`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then(this._processResponse);
   }
 
-  removeCardlike(id,token) {
+  removeCardlike(id) {
     return fetch(`${this.baseUrl}/items/${id}/likes`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then(this._processResponse);
   }

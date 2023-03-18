@@ -44,9 +44,13 @@ export default function Header({
       <li>
         <Link to={"/profile"} className="header__profile-link">
           <p className="header__user-info">
-            {currentUser.name}
+            {currentUser && currentUser.name ? currentUser.name : "name"}
             <img
-              src={currentUser.avatar || avatarImage}
+              src={
+                currentUser && currentUser.avatar
+                  ? currentUser.avatar
+                  : avatarImage
+              }
               alt="user avatar"
               className="header__user-avatar"
             />
@@ -57,9 +61,9 @@ export default function Header({
   ) : (
     <div className="header__auth-menu">
       <li>
-          <p className="header__login-button" onClick={handleLoginClick}>
-            Log In
-          </p>
+        <p className="header__login-button" onClick={handleLoginClick}>
+          Log In
+        </p>
       </li>
       <li>
         <p className="header__signup-button" onClick={handleSignupClick}>

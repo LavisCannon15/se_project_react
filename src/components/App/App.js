@@ -78,6 +78,7 @@ export default function App() {
   const [apiItems, setApiItems] = useState([]);
 
   const token = localStorage.getItem("jwt");
+  //localStorage.removeItem("jwt");
 
   /*
   useEffect(() => {
@@ -87,11 +88,11 @@ export default function App() {
       .catch((err) => console.log(err));
   }, []);
   */
-  
+
   useEffect(() => {
     if (token) {
       api
-        .getItems(token)
+        .getItems()
         .then((data) => setApiItems(data))
         .catch((err) => console.log(err));
     }
@@ -110,9 +111,9 @@ export default function App() {
       .catch((err) => console.log(err));
   };
 
-  const addItem = (name, imageUrl, weather, token) => {
+  const addItem = (name, imageUrl, weather) => {
     api
-      .addItem(name, imageUrl, weather, token)
+      .addItem(name, imageUrl, weather)
       .then((newItem) => {
         setApiItems([...apiItems, newItem]);
         setIsFormModalOpen({ isOpen: false });
@@ -140,7 +141,8 @@ export default function App() {
 
   useEffect(() => {
     if (token) {
-      auth.getUser()
+      auth
+        .getUser()
         .then((res) => {
           setIsLoggedIn(true);
           setCurrentUser(res.data);
@@ -149,22 +151,22 @@ export default function App() {
     }
   }, []);
 
-const handleSignUp = (name, avatar, email, password) => {
-  auth
-    .signup(name, avatar, email, password)
-    .then((res) => {
-      auth
-        .signin(email, password)
-        .then(() => {
-          setIsRegisterModalOpen({ isOpen: false });
-          setIsLoggedIn(true);
-          setCurrentUser(res);
-          localStorage.setItem("jwt", res.token);
-        })
-        .catch((err) => console.log(err));
-    })
-    .catch((err) => console.log(err));
-};
+  const handleSignUp = (name, avatar, email, password) => {
+    auth
+      .signup(name, avatar, email, password)
+      .then((res) => {
+        auth
+          .signin(email, password)
+          .then(() => {
+            setIsRegisterModalOpen({ isOpen: false });
+            setIsLoggedIn(true);
+            setCurrentUser(res);
+            localStorage.setItem("jwt", res.token);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  };
 
   const handleSignIn = (email, password) => {
     auth
@@ -172,12 +174,21 @@ const handleSignUp = (name, avatar, email, password) => {
       .then((res) => {
         setIsLoginModalOpen({ isOpen: false });
         setIsLoggedIn(true);
-        setCurrentUser(res);
-        console.log(res);
+        //setCurrentUser(res);
         localStorage.setItem("jwt", res.token);
+        auth.getUser().then((data) => {
+          setCurrentUser(data);
+        });
       })
       .catch((err) => console.log(err));
   };
+
+  /*
+  useEffect(() => {
+    console.log(currentUser);
+
+  }, [currentUser]);
+  */
 
   const handleSignOut = (evt) => {
     evt.preventDefault();
