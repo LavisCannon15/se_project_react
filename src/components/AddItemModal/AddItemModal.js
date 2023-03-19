@@ -50,14 +50,14 @@ export default function AddItemModal({
             className="modal__form-input modal__form-input-name"
             name="name"
             placeholder="Name"
-            id="name"
+            id="AddModal-name"
             minLength="1"
             maxLength="30"
             required
             value={name}
             onChange={handleNameChange}
           />
-          <span className="modal__error" id="addName-error"></span>
+          <span className="modal__error" id="AddModal-addName-error"></span>
         </label>
 
         <label className="modal__label">
@@ -67,12 +67,12 @@ export default function AddItemModal({
             className="modal__form-input modal__form-input-link"
             name="link"
             placeholder="Image URL"
-            id="addLink"
+            id="AddModal-addLink"
             required
             value={imageUrl}
             onChange={handleImageUrlChange}
           />
-          <span className="modal__error" id="addLink-error"></span>
+          <span className="modal__error" id="AddModal-addLink-error"></span>
         </label>
       </fieldset>
 

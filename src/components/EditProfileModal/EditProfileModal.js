@@ -45,12 +45,12 @@ export default function EditProfileModal({
             className="modal__form-input modal__form-input-name"
             name="name"
             placeholder="Name"
-            id="name"
+            id="EditProfile-name"
             required
             value={name}
             onChange={handleNameChange}
           />
-          <span className="modal__error" id="addName-error"></span>
+          <span className="modal__error" id="EditProfile-addName-error"></span>
         </label>
 
         <label className="modal__label">
@@ -60,12 +60,12 @@ export default function EditProfileModal({
             className="modal__form-input modal__form-input-link"
             name="link"
             placeholder="Avatar URL"
-            id="addLink"
+            id="EditProfile-addLink"
             required
             value={avatar}
             onChange={handleAvatarChange}
           />
-          <span className="modal__error" id="addLink-error"></span>
+          <span className="modal__error" id="EditProfile-addLink-error"></span>
         </label>
       </fieldset>
     </ModalWithForm>
