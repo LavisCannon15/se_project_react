@@ -10,7 +10,8 @@ export default function ClothesSection({
   filteredApiItems,
   onCardLike,
   currentUser,
-  clickedItem
+  clickedItem,
+  isLiked
 }) {
   const handleAddClothesClick = () => {
     setIsFormModalOpen({ isOpen: true });
@@ -48,6 +49,7 @@ export default function ClothesSection({
           onCardLike={onCardLike}
           currentUser={currentUser}
           clickedItem={clickedItem}
+          isLiked={isLiked}
         />
       ))}
     </div>
@@ -72,6 +74,7 @@ export default function ClothesSection({
         onCardLike={onCardLike}
         currentUser={currentUser}
         clickedItem={clickedItem}
+        isLiked={isLiked}
       />
     </div>
   );

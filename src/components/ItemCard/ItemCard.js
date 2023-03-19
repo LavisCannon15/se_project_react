@@ -3,9 +3,9 @@ import "./ItemCard.css";
 import unlike from "../../images/unliked.svg";
 import like from "../../images/liked.svg";
 
-export default function ItemCard({ item, setIsItemModalOpen, setClickedItem, onCardLike, currentUser, clickedItem }) {
+export default function ItemCard({ item, setIsItemModalOpen, setClickedItem, onCardLike, currentUser, clickedItem, isLiked }) {
   
-  const [isLiked, setIsLiked] = useState(false);
+
   
   const handleCardClick = () => {
     setIsItemModalOpen({ isOpen: true, clickedItem: item });
@@ -13,30 +13,13 @@ export default function ItemCard({ item, setIsItemModalOpen, setClickedItem, onC
   };
 
 
-  
+
   const handleLikeClick = () => {
-    setIsLiked(!isLiked);
     onCardLike({ id: item._id, isLiked: !isLiked });
   };
-  
 
 
-  /*
-  const handleLikeClick = () => {
-    onCardLike({ id: item._id, isLiked: !isLiked })
-      .then(() => setIsLiked(!isLiked))
-      .catch((err) => console.log(err));
-  };
-  */
-  
 
-/*
-  const handleLikeClick = () => {
-    const newIsLiked = !isLiked;
-    setIsLiked(newIsLiked);
-    onCardLike({ id: item._id, isLiked: newIsLiked });
-  };
-  */
 
 
   const cardIsLikedByCurrentUser = clickedItem && clickedItem._id === currentUser.id;

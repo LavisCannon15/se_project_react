@@ -14,6 +14,7 @@ export default function Main({
   onCardLike,
   currentUser,
   clickedItem,
+  isLiked
 })
  {
 
@@ -31,6 +32,7 @@ export default function Main({
     onCardLike,
     currentUser,
     clickedItem,
+    isLiked
   }) => (
     <div className="cards__list">
       {currentUserItems.map((item) => (
@@ -42,6 +44,7 @@ export default function Main({
           onCardLike={onCardLike}
           currentUser={currentUser}
           clickedItem={clickedItem}
+          isLiked={isLiked}
         />
       ))}
     </div>
@@ -74,6 +77,7 @@ export default function Main({
         onCardLike={onCardLike}
         currentUser={currentUser}
         clickedItem={clickedItem}
+        isLiked={isLiked}
       />
     </>
   );

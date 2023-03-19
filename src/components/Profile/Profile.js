@@ -12,7 +12,8 @@ export default function Profile({
   handleSignOut,
   onCardLike,
   currentUser,
-  clickedItem
+  clickedItem,
+  isLiked,
 }) {
   return (
     <div className="profile">
@@ -29,6 +30,7 @@ export default function Profile({
         onCardLike={onCardLike}
         currentUser={currentUser}
         clickedItem={clickedItem}
+        isLiked={isLiked}
       />
     </div>
   );

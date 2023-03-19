@@ -240,13 +240,21 @@ const onCardLike = ({id, isLiked}) => {
 }
 */
 
+
+const [isLiked, setIsLiked] = useState(false);
+
   const onCardLike = ({ id, isLiked }) => {
+
+
     const updatedItems = apiItems.map((item) => {
       if (item.id === id) {
         return { ...item, isLiked };
       }
       return item;
     });
+
+     setIsLiked(isLiked);
+     console.log(isLiked);
 
     isLiked
       ? api
@@ -262,6 +270,7 @@ const onCardLike = ({id, isLiked}) => {
           })
           .catch((err) => console.log(err));
   };
+  
 
   /*
   const onCardLike = ({ id, isLiked }) => {
@@ -305,6 +314,7 @@ const onCardLike = ({id, isLiked}) => {
                   onCardLike={onCardLike}
                   currentUser={currentUser}
                   clickedItem={clickedItem}
+                  isLiked={isLiked}
                 />
               </Route>
               <ProtectedRoute path={"/profile"} isLoggedIn={isLoggedIn}>
@@ -318,6 +328,7 @@ const onCardLike = ({id, isLiked}) => {
                   onCardLike={onCardLike}
                   currentUser={currentUser}
                   clickedItem={clickedItem}
+                  isLiked={isLiked}
                 />
               </ProtectedRoute>
             </Switch>
