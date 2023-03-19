@@ -107,10 +107,6 @@ export default function App() {
       .deleteItem(itemId)
       .then(() => {
         setApiItems(apiItems.filter((item) => item.id !== itemId));
-        api
-          .getItems()
-          .then((data) => setApiItems(data))
-          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
@@ -121,10 +117,6 @@ export default function App() {
       .then((newItem) => {
         setApiItems([...apiItems, newItem]);
         setIsFormModalOpen({ isOpen: false });
-        api
-          .getItems()
-          .then((data) => setApiItems(data))
-          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
@@ -154,6 +146,7 @@ export default function App() {
         .then((data) => {
           setIsLoggedIn(true);
           setCurrentUser(data);
+          //console.log(currentUser);
         })
         .catch((err) => console.log(err));
     }
@@ -201,6 +194,8 @@ export default function App() {
 
   }, [currentUser]);
   */
+  
+  
 
   const handleSignOut = (evt) => {
     evt.preventDefault();
@@ -208,14 +203,16 @@ export default function App() {
     setIsLoggedIn(false);
   };
 
+
+  //const [name, setName] = useState(currentUser.name);
+  //const [avatar, setAvatar] = useState(currentUser.avatar);
+
+
   const handleUpdateUser = (name, avatar) => {
     auth
       .updateUser(name, avatar)
       .then((res) => {
         setIsProfileModalOpen({ isOpen: false });
-        auth.getUser().then((data) => {
-          setCurrentUser(data);
-        });
       })
       .catch((err) => {
         console.log(err);
@@ -360,6 +357,9 @@ const [isLiked, setIsLiked] = useState(false);
             isProfileModalOpen={isProfileModalOpen}
             setIsProfileModalOpen={setIsProfileModalOpen}
             handleUpdateUser={handleUpdateUser}
+            currentUser={currentUser}
+            //setName={setName}
+            //setAvatar={setAvatar}
           />
         </CurrentTemperatureUnitContext.Provider>
       </CurrentUserContext.Provider>

@@ -7,9 +7,24 @@ export default function EditProfileModal({
   isProfileModalOpen,
   setIsProfileModalOpen,
   handleUpdateUser,
+  currentUser,
+  //setName,
+  //setAvatar,
 }) {
+
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
+
+   useEffect(() => {
+     if (currentUser && currentUser.name) {
+       setName(currentUser.name);
+     }
+     if (currentUser && currentUser.avatar) {
+      setAvatar(currentUser.avatar);
+     }
+   }, [currentUser]);
+
+
 
   const handleNameChange = (event) => {
     setName(event.target.value);
