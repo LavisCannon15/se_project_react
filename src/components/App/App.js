@@ -102,11 +102,15 @@ export default function App() {
     (item) => item.weather === currentWeatherCard
   );
 
-  const deleteItem = (itemId, token) => {
+  const deleteItem = (itemId) => {
     api
-      .deleteItem(itemId, token)
+      .deleteItem(itemId)
       .then(() => {
         setApiItems(apiItems.filter((item) => item.id !== itemId));
+        api
+          .getItems()
+          .then((data) => setApiItems(data))
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
@@ -117,6 +121,10 @@ export default function App() {
       .then((newItem) => {
         setApiItems([...apiItems, newItem]);
         setIsFormModalOpen({ isOpen: false });
+        api
+          .getItems()
+          .then((data) => setApiItems(data))
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };

@@ -1,3 +1,4 @@
+import { click } from "@testing-library/user-event/dist/click";
 import React from "react";
 import "./ItemModal.css";
 //import testImage from "../../images/test_image.png"
@@ -15,7 +16,7 @@ export default function ItemModal({
 
   const handleCardDelete = () => {
     setIsItemModalOpen({ isOpen: false });
-    deleteItem(clickedItem.id);
+    deleteItem(clickedItem._id);
   };
   
 
