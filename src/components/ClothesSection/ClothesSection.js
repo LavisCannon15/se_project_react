@@ -22,9 +22,11 @@ export default function ClothesSection({
   );
   */
 
+  
    const currentUserItems = filteredApiItems.filter(
-     (item) => item.user.id === currentUser.id
+     (item) => item.id === currentUser.id
    );
+   
 
 
 
@@ -34,12 +36,12 @@ export default function ClothesSection({
     setClickedItem,
     onCardLike,
     currentUser,
-    clickedItem
+    clickedItem,
   }) => (
     <div className="profile__clothes-cards-list">
       {currentUserItems.map((item) => (
         <ItemCard
-          key={item.id}
+          key={item._id}
           item={item}
           setIsItemModalOpen={setIsItemModalOpen}
           setClickedItem={setClickedItem}

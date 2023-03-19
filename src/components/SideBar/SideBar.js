@@ -5,7 +5,8 @@ import avatarImage from "../../images/user_avatar.svg";
 
 export default function SideBar({
   setIsProfileModalOpen,
-  handleSignOut
+  handleSignOut,
+  currentUser
 }) {
 
 
@@ -20,10 +21,14 @@ export default function SideBar({
         <p className="profile__user-name">
           <img
             className="profile__user-avatar"
-            src={avatarImage}
+            src={
+              currentUser && currentUser.avatar
+                ? currentUser.avatar
+                : avatarImage
+            }
             alt="User avatar"
           />
-          InsertNameHere
+          {currentUser && currentUser.name ? currentUser.name : "name"}
         </p>
       </li>
 
@@ -33,7 +38,9 @@ export default function SideBar({
         </p>
       </li>
       <li>
-        <p className="profile__logout" onClick={handleSignOut}>Log out</p>
+        <p className="profile__logout" onClick={handleSignOut}>
+          Log out
+        </p>
       </li>
     </div>
   );

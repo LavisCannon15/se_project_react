@@ -48,7 +48,7 @@ export default class Api {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     }).then(this._processResponse);
   }

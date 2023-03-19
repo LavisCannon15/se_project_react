@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
 
-
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 import "./Main.css";
@@ -14,12 +13,19 @@ export default function Main({
   filteredApiItems,
   onCardLike,
   currentUser,
-  clickedItem
-}) {
-  
+  clickedItem,
+})
+ {
+
+
+   const currentUserItems = filteredApiItems.filter(
+     (item) => item.id === currentUser.id
+   );
+
+   
 
   const CardList = ({
-    filteredApiItems,
+    currentUserItems,
     setIsItemModalOpen,
     setClickedItem,
     onCardLike,
@@ -27,9 +33,9 @@ export default function Main({
     clickedItem,
   }) => (
     <div className="cards__list">
-      {filteredApiItems.map((item) => (
+      {currentUserItems.map((item) => (
         <ItemCard
-          key={item.id}
+          key={item._id}
           item={item}
           setIsItemModalOpen={setIsItemModalOpen}
           setClickedItem={setClickedItem}
@@ -62,7 +68,7 @@ export default function Main({
       </h3>
 
       <CardList
-        filteredApiItems={filteredApiItems}
+        currentUserItems={currentUserItems}
         setIsItemModalOpen={setIsItemModalOpen}
         setClickedItem={setClickedItem}
         onCardLike={onCardLike}

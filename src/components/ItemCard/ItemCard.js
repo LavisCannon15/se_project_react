@@ -39,7 +39,7 @@ export default function ItemCard({ item, setIsItemModalOpen, setClickedItem, onC
   */
 
 
-  const cardIsLikedByCurrentUser = clickedItem && clickedItem.user._id === currentUser.id;
+  const cardIsLikedByCurrentUser = clickedItem && clickedItem._id === currentUser.id;
 
   const cardLikeButtonClassName = `card__like-button ${
     cardIsLikedByCurrentUser && isLiked ? "card__like-button_active" : ""

@@ -78,7 +78,7 @@ export default function App() {
   const [apiItems, setApiItems] = useState([]);
 
   const token = localStorage.getItem("jwt");
- // localStorage.removeItem("jwt");
+  // localStorage.removeItem("jwt");
 
   /*
   useEffect(() => {
@@ -179,10 +179,10 @@ export default function App() {
         auth.getUser().then((data) => {
           setCurrentUser(data);
         });
-          api
-            .getItems()
-            .then((data) => setApiItems(data))
-            .catch((err) => console.log(err));
+        api
+          .getItems()
+          .then((data) => setApiItems(data))
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
@@ -201,11 +201,13 @@ export default function App() {
   };
 
   const handleUpdateUser = (name, avatar) => {
-    api
+    auth
       .updateUser(name, avatar)
       .then((res) => {
         setIsProfileModalOpen({ isOpen: false });
-        setCurrentUser(res);
+        auth.getUser().then((data) => {
+          setCurrentUser(data);
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -230,7 +232,6 @@ const onCardLike = ({id, isLiked}) => {
 }
 */
 
-
   const onCardLike = ({ id, isLiked }) => {
     const updatedItems = apiItems.map((item) => {
       if (item.id === id) {
@@ -253,24 +254,21 @@ const onCardLike = ({id, isLiked}) => {
           })
           .catch((err) => console.log(err));
   };
-  
 
   /*
   const onCardLike = ({ id, isLiked }) => {
     const updatedItems = apiItems.map((item) => {
-      if (item._id === id) {
+      if (item.id === id) {
         return { ...item, isLiked };
       }
       return item;
     });
 
-    return isLiked
-      ? api.addCardlike(id, token).then(() => {
-          setApiItems(updatedItems);
-        })
-      : api.removeCardlike(id, token).then(() => {
-          setApiItems(updatedItems);
-        });
+    setApiItems(updatedItems);
+
+    isLiked
+      ? api.addCardlike(id, token).catch((err) => console.log(err))
+      : api.removeCardlike(id, token).catch((err) => console.log(err));
   };
   */
 
@@ -301,7 +299,7 @@ const onCardLike = ({id, isLiked}) => {
                   clickedItem={clickedItem}
                 />
               </Route>
-              <ProtectedRoute path="/profile" isLoggedIn={isLoggedIn}>
+              <ProtectedRoute path={"/profile"} isLoggedIn={isLoggedIn}>
                 <Profile
                   setIsItemModalOpen={setIsItemModalOpen}
                   setIsFormModalOpen={setIsFormModalOpen}

@@ -19,6 +19,7 @@ export default function Profile({
       <SideBar
         setIsProfileModalOpen={setIsProfileModalOpen}
         handleSignOut={handleSignOut}
+        currentUser={currentUser}
       />
       <ClothesSection
         setIsItemModalOpen={setIsItemModalOpen}
