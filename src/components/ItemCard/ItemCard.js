@@ -12,10 +12,31 @@ export default function ItemCard({ item, setIsItemModalOpen, setClickedItem, onC
     setClickedItem(item);
   };
 
+
+  
   const handleLikeClick = () => {
     setIsLiked(!isLiked);
     onCardLike({ id: item._id, isLiked: !isLiked });
   };
+  
+
+
+  /*
+  const handleLikeClick = () => {
+    onCardLike({ id: item._id, isLiked: !isLiked })
+      .then(() => setIsLiked(!isLiked))
+      .catch((err) => console.log(err));
+  };
+  */
+  
+
+/*
+  const handleLikeClick = () => {
+    const newIsLiked = !isLiked;
+    setIsLiked(newIsLiked);
+    onCardLike({ id: item._id, isLiked: newIsLiked });
+  };
+  */
 
 
   const cardIsLikedByCurrentUser = clickedItem && clickedItem.user._id === currentUser.id;
