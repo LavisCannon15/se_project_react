@@ -14,16 +14,11 @@ export default function Main({
   onCardLike,
   currentUser,
   clickedItem,
-  isLiked
-})
- {
-
-
-   const currentUserItems = filteredApiItems.filter(
-     (item) => item.id === currentUser.id
-   );
-
-   
+  //isLiked,
+}) {
+  const currentUserItems = filteredApiItems.filter(
+    (item) => item.id === currentUser.id
+  );
 
   const CardList = ({
     currentUserItems,
@@ -32,7 +27,7 @@ export default function Main({
     onCardLike,
     currentUser,
     clickedItem,
-    isLiked
+    //isLiked,
   }) => (
     <div className="cards__list">
       {currentUserItems.map((item) => (
@@ -44,7 +39,7 @@ export default function Main({
           onCardLike={onCardLike}
           currentUser={currentUser}
           clickedItem={clickedItem}
-          isLiked={isLiked}
+          //isLiked={isLiked}
         />
       ))}
     </div>
@@ -77,7 +72,7 @@ export default function Main({
         onCardLike={onCardLike}
         currentUser={currentUser}
         clickedItem={clickedItem}
-        isLiked={isLiked}
+        //isLiked={isLiked}
       />
     </>
   );

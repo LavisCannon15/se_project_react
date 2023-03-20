@@ -3,32 +3,51 @@ import "./ItemCard.css";
 import unlike from "../../images/unliked.svg";
 import like from "../../images/liked.svg";
 
-export default function ItemCard({ item, setIsItemModalOpen, setClickedItem, onCardLike, currentUser, clickedItem, isLiked }) {
-  
+export default function ItemCard({
+  item,
+  setIsItemModalOpen,
+  setClickedItem,
+  onCardLike,
+  currentUser,
+  clickedItem,
+}) {
+  const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
 
-  
   const handleCardClick = () => {
     setIsItemModalOpen({ isOpen: true, clickedItem: item });
     setClickedItem(item);
   };
 
-
-
+  /*
   const handleLikeClick = () => {
     onCardLike({ id: item._id, isLiked: !isLiked });
   };
+  */
 
+  const handleLikeClick = () => {
+    const newIsLiked = !isLiked;
+    setIsLiked(newIsLiked);
+    onCardLike({ id: item._id, isLiked: newIsLiked });
+    console.log(newIsLiked);
+  };
 
+  //const cardIsLikedByCurrentUser = clickedItem && clickedItem._id === currentUser.id;
+  //const cardIsLikedByCurrentUser = item.likes.includes(currentUser.id);
 
-
-
-  const cardIsLikedByCurrentUser = clickedItem && clickedItem._id === currentUser.id;
-
-  const cardLikeButtonClassName = `card__like-button ${
+  /*const cardLikeButtonClassName = `card__like-button ${
     cardIsLikedByCurrentUser && isLiked ? "card__like-button_active" : ""
   } ${!currentUser ? "card__like-button_hidden" : ""}`;
+  */
 
+  /*
+  const cardLikeButtonClassName = `card__like-button ${
+    cardIsLikedByCurrentUser || isLiked ? "card__like-button_active" : ""
+  } ${!currentUser ? "card__like-button_hidden" : ""}`;
+*/
 
+  const cardLikeButtonClassName = `card__like-button ${
+    isLiked ? "card__like-button_active" : ""
+  } ${!currentUser ? "card__like-button_hidden" : ""}`;
 
   return (
     <li className="card">

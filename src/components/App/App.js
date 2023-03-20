@@ -194,8 +194,6 @@ export default function App() {
 
   }, [currentUser]);
   */
-  
-  
 
   const handleSignOut = (evt) => {
     evt.preventDefault();
@@ -203,10 +201,8 @@ export default function App() {
     setIsLoggedIn(false);
   };
 
-
   //const [name, setName] = useState(currentUser.name);
   //const [avatar, setAvatar] = useState(currentUser.avatar);
-
 
   const handleUpdateUser = (name, avatar) => {
     auth
@@ -219,72 +215,72 @@ export default function App() {
       });
   };
 
-  /*
-const onCardLike = ({id, isLiked}) => {
+
+
+/*
+const [likedItems, setLikedItems] = useState([]);
+
+const onCardLike = ({ id, isLiked }) => {
+  const updatedItems = apiItems.map((item) => {
+    if (item.id === id) {
+      return { ...item, isLiked };
+    }
+    return item;
+  });
+
+  setApiItems(updatedItems);
+
+  if (isLiked) {
+    api
+      .addCardlike(id, token)
+      .then(() => {
+        setLikedItems([...likedItems, id]);
+      })
+      .catch((err) => console.log(err));
+  } else {
+    api
+      .removeCardlike(id, token)
+      .then(() => {
+        setLikedItems(likedItems.filter((itemId) => itemId !== id));
+      })
+      .catch((err) => console.log(err));
+  }
+};
+
+*/
+
+
+//const [isLiked, setIsLiked] = useState(false);
+
+const onCardLike = ({ id, isLiked }) => {
+
+  //cardIsLikedByCurrentUser = item.likes.includes(currentUser.id);
+
+
+  const updatedItems = apiItems.map((item) => {
+    if (item.id === id) {
+      return { ...item, isLiked };
+    }
+    return item;
+  });
+
+  //setIsLiked(isLiked);
+
   isLiked
     ? api
         .addCardlike(id, token)
-        .then((updatedCard) => {
-          setApiItems()
+        .then(() => {
+          setApiItems(updatedItems);
         })
         .catch((err) => console.log(err))
     : api
         .removeCardlike(id, token)
-        .then((updatedCard) => {
-          setApiItems()
+        .then(() => {
+          setApiItems(updatedItems);
         })
         .catch((err) => console.log(err));
-}
-*/
+};
 
-
-const [isLiked, setIsLiked] = useState(false);
-
-  const onCardLike = ({ id, isLiked }) => {
-
-
-    const updatedItems = apiItems.map((item) => {
-      if (item.id === id) {
-        return { ...item, isLiked };
-      }
-      return item;
-    });
-
-     setIsLiked(isLiked);
-     console.log(isLiked);
-
-    isLiked
-      ? api
-          .addCardlike(id, token)
-          .then(() => {
-            setApiItems(updatedItems);
-          })
-          .catch((err) => console.log(err))
-      : api
-          .removeCardlike(id, token)
-          .then(() => {
-            setApiItems(updatedItems);
-          })
-          .catch((err) => console.log(err));
-  };
-  
-
-  /*
-  const onCardLike = ({ id, isLiked }) => {
-    const updatedItems = apiItems.map((item) => {
-      if (item.id === id) {
-        return { ...item, isLiked };
-      }
-      return item;
-    });
-
-    setApiItems(updatedItems);
-
-    isLiked
-      ? api.addCardlike(id, token).catch((err) => console.log(err))
-      : api.removeCardlike(id, token).catch((err) => console.log(err));
-  };
-  */
 
   return (
     <div className="app">
@@ -311,7 +307,7 @@ const [isLiked, setIsLiked] = useState(false);
                   onCardLike={onCardLike}
                   currentUser={currentUser}
                   clickedItem={clickedItem}
-                  isLiked={isLiked}
+                  //isLiked={isLiked}
                 />
               </Route>
               <ProtectedRoute path={"/profile"} isLoggedIn={isLoggedIn}>
@@ -325,7 +321,7 @@ const [isLiked, setIsLiked] = useState(false);
                   onCardLike={onCardLike}
                   currentUser={currentUser}
                   clickedItem={clickedItem}
-                  isLiked={isLiked}
+                  //isLiked={isLiked}
                 />
               </ProtectedRoute>
             </Switch>
