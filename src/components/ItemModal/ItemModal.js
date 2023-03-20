@@ -15,7 +15,6 @@ export default function ItemModal({
   };
 
   const handleCardDelete = () => {
-    setIsItemModalOpen({ isOpen: false });
     deleteItem(clickedItem._id);
   };
   

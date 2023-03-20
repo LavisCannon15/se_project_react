@@ -102,20 +102,44 @@ export default function App() {
     (item) => item.weather === currentWeatherCard
   );
 
+
+  
   const deleteItem = (itemId) => {
     api
       .deleteItem(itemId)
       .then(() => {
-        setApiItems(apiItems.filter((item) => item.id !== itemId));
+        setApiItems(apiItems.filter((item) => item._id !== itemId));
+        setIsItemModalOpen({ isOpen: false });
+        console.log(apiItems);
       })
       .catch((err) => console.log(err));
   };
+  
+
+
+  /*
+    const deleteItem = (itemId) => {
+      api
+        .deleteItem(itemId)
+        .then(() => {
+          setApiItems(
+            apiItems.filter((item) => {
+              console.log(item);
+              console.log("Item ID:" + itemId);
+              console.log(apiItems);
+              return item.id !== itemId;
+            })
+          );
+        })
+        .catch((err) => console.log(err));
+    };
+    */
 
   const addItem = (name, imageUrl, weather) => {
     api
       .addItem(name, imageUrl, weather)
       .then((newItem) => {
-        setApiItems([...apiItems, newItem]);
+        setApiItems([...apiItems, newItem.data]);
         setIsFormModalOpen({ isOpen: false });
       })
       .catch((err) => console.log(err));
@@ -209,6 +233,7 @@ export default function App() {
       .updateUser(name, avatar)
       .then((res) => {
         setIsProfileModalOpen({ isOpen: false });
+        setCurrentUser(res);
       })
       .catch((err) => {
         console.log(err);
@@ -254,7 +279,9 @@ const onCardLike = ({ id, isLiked }) => {
 
 const onCardLike = ({ id, isLiked }) => {
 
-  //cardIsLikedByCurrentUser = item.likes.includes(currentUser.id);
+  //onst cardIsLikedByCurrentUser = cardItem.likes.includes(currentUser.id);
+  console.log(id);
+  console.log(isLiked);
 
 
   const updatedItems = apiItems.map((item) => {
@@ -264,7 +291,7 @@ const onCardLike = ({ id, isLiked }) => {
     return item;
   });
 
-  //setIsLiked(isLiked);
+  //setIsLiked(!isLiked);
 
   isLiked
     ? api

@@ -25,11 +25,17 @@ export default function ItemCard({
   */
 
   const handleLikeClick = () => {
-    const newIsLiked = !isLiked;
-    setIsLiked(newIsLiked);
-    onCardLike({ id: item._id, isLiked: newIsLiked });
-    console.log(newIsLiked);
-  };
+    //const newIsLiked = !isLiked;
+    //setIsLiked(newIsLiked);
+
+
+  
+    setIsLiked(!isLiked);
+    onCardLike({ id: item._id, isLiked: isLiked});
+    //setIsLiked(!isLiked);
+
+    //console.log(newIsLiked);
+  }
 
   //const cardIsLikedByCurrentUser = clickedItem && clickedItem._id === currentUser.id;
   //const cardIsLikedByCurrentUser = item.likes.includes(currentUser.id);
