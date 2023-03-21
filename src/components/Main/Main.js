@@ -38,14 +38,18 @@ export default function Main({
 
     //const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
 
+    
     /*
     const handleCardLike = (itemId, isLiked) => {
-      
+
+        const newIsLiked = !isLiked;
+        console.log(isLiked);
       setIsLiked(!isLiked);
-      onCardLike({ id: itemId, isLiked: !isLiked });
+      onCardLike({ id: itemId, isLiked: isLiked });
 
     };
     */
+  
   
 
   
