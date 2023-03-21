@@ -10,8 +10,10 @@ export default function ItemCard({
   onCardLike,
   currentUser,
   clickedItem,
+  isLiked,
+  setIsLiked
 }) {
-  const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
+  //const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
 
   const handleCardClick = () => {
     setIsItemModalOpen({ isOpen: true, clickedItem: item });
@@ -24,18 +26,32 @@ export default function ItemCard({
   };
   */
 
-  const handleLikeClick = () => {
-    //const newIsLiked = !isLiked;
-    //setIsLiked(newIsLiked);
-
-
   
-    setIsLiked(!isLiked);
+  const handleLikeClick = () => {
+    const newIsLiked = !isLiked;
+    setIsLiked(newIsLiked);
     onCardLike({ id: item._id, isLiked: isLiked});
     //setIsLiked(!isLiked);
 
-    //console.log(newIsLiked);
+    console.log(isLiked);
   }
+  
+
+  /*
+  const handleLikeClick = () => {
+    const newIsLiked = !item.isLiked;
+    setIsLiked(newIsLiked);
+    onCardLike({ id: item._id, isLiked: newIsLiked });
+  };
+  */
+
+
+
+  
+
+
+
+
 
   //const cardIsLikedByCurrentUser = clickedItem && clickedItem._id === currentUser.id;
   //const cardIsLikedByCurrentUser = item.likes.includes(currentUser.id);
@@ -51,9 +67,12 @@ export default function ItemCard({
   } ${!currentUser ? "card__like-button_hidden" : ""}`;
 */
 
+
   const cardLikeButtonClassName = `card__like-button ${
     isLiked ? "card__like-button_active" : ""
   } ${!currentUser ? "card__like-button_hidden" : ""}`;
+  
+
 
   return (
     <li className="card">

@@ -117,24 +117,6 @@ export default function App() {
   
 
 
-  /*
-    const deleteItem = (itemId) => {
-      api
-        .deleteItem(itemId)
-        .then(() => {
-          setApiItems(
-            apiItems.filter((item) => {
-              console.log(item);
-              console.log("Item ID:" + itemId);
-              console.log(apiItems);
-              return item.id !== itemId;
-            })
-          );
-        })
-        .catch((err) => console.log(err));
-    };
-    */
-
   const addItem = (name, imageUrl, weather) => {
     api
       .addItem(name, imageUrl, weather)
@@ -277,19 +259,33 @@ const onCardLike = ({ id, isLiked }) => {
 
 //const [isLiked, setIsLiked] = useState(false);
 
+
 const onCardLike = ({ id, isLiked }) => {
 
   //onst cardIsLikedByCurrentUser = cardItem.likes.includes(currentUser.id);
-  console.log(id);
-  console.log(isLiked);
+  //console.log(id);
 
 
+  /*
   const updatedItems = apiItems.map((item) => {
-    if (item.id === id) {
+    if (item._id === id) {
       return { ...item, isLiked };
     }
     return item;
   });
+  */
+
+const updatedItems = apiItems.map((item) =>
+  item._id === id
+    ? {
+        ...item,
+        likes: isLiked
+          ? [...item.likes, currentUser._id]
+          : item.likes.filter((userId) => userId !== currentUser._id),
+      }
+    : item
+);
+  console.log(updatedItems);
 
   //setIsLiked(!isLiked);
 
@@ -298,15 +294,60 @@ const onCardLike = ({ id, isLiked }) => {
         .addCardlike(id, token)
         .then(() => {
           setApiItems(updatedItems);
+          console.log("added")
         })
         .catch((err) => console.log(err))
     : api
         .removeCardlike(id, token)
         .then(() => {
           setApiItems(updatedItems);
+          console.log("removed")
         })
         .catch((err) => console.log(err));
 };
+
+
+
+/*
+const onCardLike = ({ id, isLiked }) => {
+  //onst cardIsLikedByCurrentUser = cardItem.likes.includes(currentUser.id);
+  //console.log(id);
+
+  
+  const updatedItems = apiItems.map((item) => {
+    if (item._id === id) {
+      return { ...item, isLiked };
+    }
+    return item;
+  });
+  
+
+  //console.log(updatedItems);
+
+  //setIsLiked(!isLiked);
+
+  isLiked
+    ? api
+        .addCardlike(id, token)
+        .then((updatedCard) => {
+          setApiItems((cards) => cards.map((c) => (c._id === id ? updatedCard : c)) );
+        })
+        .catch((err) => console.log(err))
+    : api
+        .removeCardlike(id, token)
+        .then((updatedCard) => {
+          setApiItems((cards) =>
+            cards.map((c) => (c._id === id ? updatedCard : c))
+          );
+        })
+        .catch((err) => console.log(err));
+};
+*/
+
+
+
+
+
 
 
   return (

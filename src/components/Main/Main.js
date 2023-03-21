@@ -16,34 +16,39 @@ export default function Main({
   clickedItem,
   //isLiked,
 }) {
+
+
+
+  
   const currentUserItems = filteredApiItems.filter(
     (item) => item.id === currentUser.id
   );
+  
+    
 
-  const CardList = ({
-    currentUserItems,
-    setIsItemModalOpen,
-    setClickedItem,
-    onCardLike,
-    currentUser,
-    clickedItem,
-    //isLiked,
-  }) => (
-    <div className="cards__list">
-      {currentUserItems.map((item) => (
-        <ItemCard
-          key={item._id}
-          item={item}
-          setIsItemModalOpen={setIsItemModalOpen}
-          setClickedItem={setClickedItem}
-          onCardLike={onCardLike}
-          currentUser={currentUser}
-          clickedItem={clickedItem}
-          //isLiked={isLiked}
-        />
-      ))}
-    </div>
-  );
+  /*
+  const currentUserItems = filteredApiItems.map((item) => ({
+    ...item,
+    isLiked: item.likes.includes(currentUser.id),
+  }));
+  */
+  
+
+    const [isLiked, setIsLiked] = useState(false);
+
+    //const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
+
+    /*
+    const handleCardLike = (itemId, isLiked) => {
+      
+      setIsLiked(!isLiked);
+      onCardLike({ id: itemId, isLiked: !isLiked });
+
+    };
+    */
+  
+
+  
 
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
@@ -65,15 +70,21 @@ export default function Main({
           "/ You may want to wear:"}
       </h3>
 
-      <CardList
-        currentUserItems={currentUserItems}
-        setIsItemModalOpen={setIsItemModalOpen}
-        setClickedItem={setClickedItem}
-        onCardLike={onCardLike}
-        currentUser={currentUser}
-        clickedItem={clickedItem}
-        //isLiked={isLiked}
-      />
+      <div className="cards__list">
+        {currentUserItems.map((item) => (
+          <ItemCard
+            key={item._id}
+            item={item}
+            setIsItemModalOpen={setIsItemModalOpen}
+            setClickedItem={setClickedItem}
+            onCardLike={onCardLike}
+            currentUser={currentUser}
+            clickedItem={clickedItem}
+            isLiked={isLiked}
+            setIsLiked={setIsLiked}
+          />
+        ))}
+      </div>
     </>
   );
 }
