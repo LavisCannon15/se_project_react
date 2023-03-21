@@ -13,7 +13,9 @@ export default function ItemCard({
   setNewIsLiked,
   newIsLiked,
 }) {
-  const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
+  //const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
+
+  const [isLiked, setIsLiked] = useState(item.likes.some(user => user.id === currentUser.id));
 
   const handleCardClick = () => {
     setIsItemModalOpen({ isOpen: true, clickedItem: item });

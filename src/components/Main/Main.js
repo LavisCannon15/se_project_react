@@ -73,7 +73,7 @@ export default function Main({
             onCardLike={() => {
               onCardLike({
                 id: item._id,
-                isLiked: item.likes.includes(currentUser._id),
+                isLiked: item.likes.some((user) => user.id === currentUser.id),
                 currentUser,
               });
             }}
