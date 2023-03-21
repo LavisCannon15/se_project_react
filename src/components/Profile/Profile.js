@@ -13,7 +13,8 @@ export default function Profile({
   onCardLike,
   currentUser,
   clickedItem,
-  isLiked,
+  setNewIsLiked,
+  newIsLiked,
 }) {
   return (
     <div className="profile">
@@ -30,7 +31,8 @@ export default function Profile({
         onCardLike={onCardLike}
         currentUser={currentUser}
         clickedItem={clickedItem}
-        isLiked={isLiked}
+        setNewIsLiked={setNewIsLiked}
+        newIsLiked={newIsLiked}
       />
     </div>
   );

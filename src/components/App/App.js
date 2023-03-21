@@ -392,7 +392,8 @@ const onCardLike = ({ id, isLiked }) => {
                   onCardLike={onCardLike}
                   currentUser={currentUser}
                   clickedItem={clickedItem}
-                  //isLiked={isLiked}
+                  setNewIsLiked={setNewIsLiked}
+                  newIsLiked={newIsLiked}
                 />
               </ProtectedRoute>
             </Switch>

@@ -77,7 +77,8 @@ export default function ItemCard({
   const cardLikeButtonClassName = `card__like-button ${
     isLiked ? "card__like-button_active" : ""
   } ${!currentUser ? "card__like-button_hidden" : ""}`;
-  
+
+
 
 
   return (
@@ -88,10 +89,14 @@ export default function ItemCard({
             <h2 className="card__title">{item.name}</h2>
           </div>
           <button className={cardLikeButtonClassName} onClick={() => {
+
+
             setIsLiked(!isLiked);
-            console.log(isLiked);
-            onCardLike({id: item._id, isLiked: isLiked});
             setNewIsLiked(!isLiked);
+
+            console.log(isLiked);
+            console.log(newIsLiked);
+            onCardLike({id: item._id, isLiked: isLiked});
           }}>
             <img
               className="card__likes"

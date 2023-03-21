@@ -11,7 +11,8 @@ export default function ClothesSection({
   onCardLike,
   currentUser,
   clickedItem,
-  isLiked
+  setNewIsLiked,
+  newIsLiked,
 }) {
   const handleAddClothesClick = () => {
     setIsFormModalOpen({ isOpen: true });
@@ -23,36 +24,8 @@ export default function ClothesSection({
   );
   */
 
-  
-   const currentUserItems = filteredApiItems.filter(
-     (item) => item.id === currentUser.id
-   );
-   
-
-
-
-  const CardList = ({
-    currentUserItems,
-    setIsItemModalOpen,
-    setClickedItem,
-    onCardLike,
-    currentUser,
-    clickedItem,
-  }) => (
-    <div className="profile__clothes-cards-list">
-      {currentUserItems.map((item) => (
-        <ItemCard
-          key={item._id}
-          item={item}
-          setIsItemModalOpen={setIsItemModalOpen}
-          setClickedItem={setClickedItem}
-          onCardLike={onCardLike}
-          currentUser={currentUser}
-          clickedItem={clickedItem}
-          isLiked={isLiked}
-        />
-      ))}
-    </div>
+  const currentUserItems = filteredApiItems.filter(
+    (item) => item.id === currentUser.id
   );
 
   return (
@@ -67,15 +40,27 @@ export default function ClothesSection({
         </p>
       </div>
 
-      <CardList
-        currentUserItems={currentUserItems}
-        setIsItemModalOpen={setIsItemModalOpen}
-        setClickedItem={setClickedItem}
-        onCardLike={onCardLike}
-        currentUser={currentUser}
-        clickedItem={clickedItem}
-        isLiked={isLiked}
-      />
+      <div className="cards__list">
+        {currentUserItems.map((item) => (
+          <ItemCard
+            key={item._id}
+            item={item}
+            setIsItemModalOpen={setIsItemModalOpen}
+            setClickedItem={setClickedItem}
+            onCardLike={() => {
+              onCardLike({
+                id: item._id,
+                isLiked: item.likes.includes(currentUser._id),
+                currentUser,
+              });
+            }}
+            currentUser={currentUser}
+            clickedItem={clickedItem}
+            setNewIsLiked={setNewIsLiked}
+            newIsLiked={newIsLiked}
+          />
+        ))}
+      </div>
     </div>
   );
 }
