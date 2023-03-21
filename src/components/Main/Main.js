@@ -14,17 +14,12 @@ export default function Main({
   onCardLike,
   currentUser,
   clickedItem,
-  //isLiked,
+  setNewIsLiked,
+  newIsLiked
 }) {
-
-
-
-  
   const currentUserItems = filteredApiItems.filter(
     (item) => item.id === currentUser.id
   );
-  
-    
 
   /*
   const currentUserItems = filteredApiItems.map((item) => ({
@@ -32,14 +27,12 @@ export default function Main({
     isLiked: item.likes.includes(currentUser.id),
   }));
   */
-  
 
-    //const [isLiked, setIsLiked] = useState(false);
+  //const [isLiked, setIsLiked] = useState(false);
 
-    //const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
+  //const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
 
-    
-    /*
+  /*
     const handleCardLike = (itemId, isLiked) => {
 
         const newIsLiked = !isLiked;
@@ -49,10 +42,6 @@ export default function Main({
 
     };
     */
-  
-  
-
-  
 
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
@@ -85,13 +74,13 @@ export default function Main({
               onCardLike({
                 id: item._id,
                 isLiked: item.likes.includes(currentUser._id),
-                currentUser
+                currentUser,
               });
             }}
             currentUser={currentUser}
             clickedItem={clickedItem}
-            //isLiked={isLiked}
-            //setIsLiked={setIsLiked}
+            setNewIsLiked={setNewIsLiked}
+            newIsLiked={newIsLiked}
           />
         ))}
       </div>

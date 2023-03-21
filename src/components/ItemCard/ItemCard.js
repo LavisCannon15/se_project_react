@@ -10,6 +10,8 @@ export default function ItemCard({
   onCardLike,
   currentUser,
   clickedItem,
+  setNewIsLiked,
+  newIsLiked
 }) {
 
   const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
@@ -89,10 +91,11 @@ export default function ItemCard({
             setIsLiked(!isLiked);
             console.log(isLiked);
             onCardLike({id: item._id, isLiked: isLiked});
+            setNewIsLiked(!isLiked);
           }}>
             <img
               className="card__likes"
-              src={isLiked ? like : unlike}
+              src={isLiked? like : unlike}
               alt="card likes"
             />
           </button>

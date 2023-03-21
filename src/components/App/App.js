@@ -259,6 +259,7 @@ const onCardLike = ({ id, isLiked }) => {
 
 //const [isLiked, setIsLiked] = useState(false);
 
+const [newIsLiked, setNewIsLiked] = useState(false);
 
 const onCardLike = ({ id, isLiked }) => {
 
@@ -275,7 +276,7 @@ const onCardLike = ({ id, isLiked }) => {
   });
   */
 
-  console.log(isLiked);
+  //console.log(newIsLiked);
 
 const updatedItems = apiItems.map((item) =>
   item._id === id
@@ -290,7 +291,7 @@ const updatedItems = apiItems.map((item) =>
 
   //setIsLiked(!isLiked);
 
-  isLiked
+  newIsLiked
     ? api
         .addCardlike(id, token)
         .then(() => {
@@ -376,7 +377,8 @@ const onCardLike = ({ id, isLiked }) => {
                   onCardLike={onCardLike}
                   currentUser={currentUser}
                   clickedItem={clickedItem}
-                  //isLiked={isLiked}
+                  setNewIsLiked={setNewIsLiked}
+                  newIsLiked={newIsLiked}
                 />
               </Route>
               <ProtectedRoute path={"/profile"} isLoggedIn={isLoggedIn}>
