@@ -11,9 +11,8 @@ export default function ItemCard({
   currentUser,
   clickedItem,
   setNewIsLiked,
-  newIsLiked
+  newIsLiked,
 }) {
-
   const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
 
   const handleCardClick = () => {
@@ -27,7 +26,6 @@ export default function ItemCard({
   };
   */
 
-  
   /*
   const handleLikeClick = () => {
     const newIsLiked = !isLiked;
@@ -37,9 +35,6 @@ export default function ItemCard({
     onCardLike({ id: item._id, isLiked: isLiked});
   }
   */
-  
-
-
 
   /*
   const handleLikeClick = () => {
@@ -49,15 +44,15 @@ export default function ItemCard({
     onCardLike({ id: item._id, isLiked: newIsLiked });
   };
   */
-  
 
+  const handleLikeClick = () => {
+    setIsLiked(!isLiked);
+    setNewIsLiked(!isLiked);
 
-
-  
-
-
-
-
+    console.log(isLiked);
+    console.log(newIsLiked);
+    onCardLike({ id: item._id, isLiked: isLiked });
+  };
 
   //const cardIsLikedByCurrentUser = clickedItem && clickedItem._id === currentUser.id;
   //const cardIsLikedByCurrentUser = item.likes.includes(currentUser.id);
@@ -73,13 +68,9 @@ export default function ItemCard({
   } ${!currentUser ? "card__like-button_hidden" : ""}`;
 */
 
-
   const cardLikeButtonClassName = `card__like-button ${
     isLiked ? "card__like-button_active" : ""
   } ${!currentUser ? "card__like-button_hidden" : ""}`;
-
-
-
 
   return (
     <li className="card">
@@ -88,19 +79,10 @@ export default function ItemCard({
           <div className="card__title-box">
             <h2 className="card__title">{item.name}</h2>
           </div>
-          <button className={cardLikeButtonClassName} onClick={() => {
-
-
-            setIsLiked(!isLiked);
-            setNewIsLiked(!isLiked);
-
-            console.log(isLiked);
-            console.log(newIsLiked);
-            onCardLike({id: item._id, isLiked: isLiked});
-          }}>
+          <button className={cardLikeButtonClassName} onClick={handleLikeClick}>
             <img
               className="card__likes"
-              src={isLiked? like : unlike}
+              src={isLiked ? like : unlike}
               alt="card likes"
             />
           </button>

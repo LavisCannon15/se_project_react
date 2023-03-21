@@ -93,7 +93,9 @@ export default function App() {
     if (token) {
       api
         .getItems()
-        .then((data) => setApiItems(data))
+        .then((data) => {
+          setApiItems(data)
+        })
         .catch((err) => console.log(err));
     }
   }, []);
@@ -194,12 +196,12 @@ export default function App() {
       .catch((err) => console.log(err));
   };
 
-  /*
+  
   useEffect(() => {
-    console.log(currentUser);
+    console.log(apiItems);
 
-  }, [currentUser]);
-  */
+  }, [apiItems]);
+  
 
   const handleSignOut = (evt) => {
     evt.preventDefault();
@@ -257,26 +259,26 @@ const onCardLike = ({ id, isLiked }) => {
 */
 
 
-//const [isLiked, setIsLiked] = useState(false);
 
 const [newIsLiked, setNewIsLiked] = useState(false);
 
 const onCardLike = ({ id, isLiked }) => {
 
-  //onst cardIsLikedByCurrentUser = cardItem.likes.includes(currentUser.id);
-  //console.log(id);
-
-
-  /*
-  const updatedItems = apiItems.map((item) => {
-    if (item._id === id) {
-      return { ...item, isLiked };
-    }
-    return item;
-  });
-  */
 
   //console.log(newIsLiked);
+
+  /*
+const updatedItems = apiItems.map((item) =>
+  item._id === id
+    ? {
+        ...item,
+        likes: isLiked
+          ? [...item.likes, currentUser._id]
+          : item.likes.filter((userId) => userId !== currentUser._id),
+      }
+    : item
+);
+*/
 
 const updatedItems = apiItems.map((item) =>
   item._id === id
@@ -288,6 +290,7 @@ const updatedItems = apiItems.map((item) =>
       }
     : item
 );
+
 
   //setIsLiked(!isLiked);
 
