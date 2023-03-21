@@ -275,6 +275,8 @@ const onCardLike = ({ id, isLiked }) => {
   });
   */
 
+  console.log(isLiked);
+
 const updatedItems = apiItems.map((item) =>
   item._id === id
     ? {
@@ -285,7 +287,6 @@ const updatedItems = apiItems.map((item) =>
       }
     : item
 );
-  console.log(updatedItems);
 
   //setIsLiked(!isLiked);
 

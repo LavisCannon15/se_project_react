@@ -34,7 +34,7 @@ export default function Main({
   */
   
 
-    const [isLiked, setIsLiked] = useState(false);
+    //const [isLiked, setIsLiked] = useState(false);
 
     //const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
 
@@ -81,11 +81,17 @@ export default function Main({
             item={item}
             setIsItemModalOpen={setIsItemModalOpen}
             setClickedItem={setClickedItem}
-            onCardLike={onCardLike}
+            onCardLike={() => {
+              onCardLike({
+                id: item._id,
+                isLiked: item.likes.includes(currentUser._id),
+                currentUser
+              });
+            }}
             currentUser={currentUser}
             clickedItem={clickedItem}
-            isLiked={isLiked}
-            setIsLiked={setIsLiked}
+            //isLiked={isLiked}
+            //setIsLiked={setIsLiked}
           />
         ))}
       </div>

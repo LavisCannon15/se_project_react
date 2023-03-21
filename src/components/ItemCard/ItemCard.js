@@ -10,10 +10,9 @@ export default function ItemCard({
   onCardLike,
   currentUser,
   clickedItem,
-  isLiked,
-  setIsLiked
 }) {
-  //const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
+
+  const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
 
   const handleCardClick = () => {
     setIsItemModalOpen({ isOpen: true, clickedItem: item });
@@ -27,6 +26,7 @@ export default function ItemCard({
   */
 
   
+  /*
   const handleLikeClick = () => {
     const newIsLiked = !isLiked;
     setIsLiked(newIsLiked);
@@ -34,6 +34,7 @@ export default function ItemCard({
 
     onCardLike({ id: item._id, isLiked: isLiked});
   }
+  */
   
 
 
@@ -84,7 +85,11 @@ export default function ItemCard({
           <div className="card__title-box">
             <h2 className="card__title">{item.name}</h2>
           </div>
-          <button className={cardLikeButtonClassName} onClick={handleLikeClick}>
+          <button className={cardLikeButtonClassName} onClick={() => {
+            setIsLiked(!isLiked);
+            console.log(isLiked);
+            onCardLike({id: item._id, isLiked: isLiked});
+          }}>
             <img
               className="card__likes"
               src={isLiked ? like : unlike}
