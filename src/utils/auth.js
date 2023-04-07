@@ -4,7 +4,7 @@ export default class Auth {
 
         this.baseUrl =
           process.env.NODE_ENV === "production"
-            ? "api.wtwrlaviscannon.chickenkiller.com"
+            ? "wtwrlaviscannon.chickenkiller.com"
             : "http://localhost:3001";
   }
 
