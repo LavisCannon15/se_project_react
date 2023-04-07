@@ -14,8 +14,8 @@ export default function Main({
   onCardLike,
   currentUser,
   clickedItem,
-  setNewIsLiked,
-  newIsLiked
+  newIsLiked,
+  setNewIsLiked
 }) {
   const currentUserItems = filteredApiItems.filter(
     (item) => item.id === currentUser.id
@@ -71,16 +71,18 @@ export default function Main({
             setIsItemModalOpen={setIsItemModalOpen}
             setClickedItem={setClickedItem}
             onCardLike={() => {
-              onCardLike({
-                id: item._id,
-                isLiked: item.likes.some((user) => user.id === currentUser.id),
-                currentUser,
-              });
+              onCardLike(
+                {
+                  id: item._id,
+                  isLiked: item.likes.some((user) => user.id === currentUser.id)
+                },
+                currentUser
+              );
             }}
             currentUser={currentUser}
             clickedItem={clickedItem}
-            setNewIsLiked={setNewIsLiked}
             newIsLiked={newIsLiked}
+            setNewIsLiked={setNewIsLiked}
           />
         ))}
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import "./ItemCard.css";
 import unlike from "../../images/unliked.svg";
 import like from "../../images/liked.svg";
@@ -10,12 +10,14 @@ export default function ItemCard({
   onCardLike,
   currentUser,
   clickedItem,
-  setNewIsLiked,
   newIsLiked,
+  setNewIsLiked
 }) {
   //const [isLiked, setIsLiked] = useState(item.likes.includes(currentUser.id));
 
   const [isLiked, setIsLiked] = useState(item.likes.some(user => user.id === currentUser.id));
+  
+
 
   const handleCardClick = () => {
     setIsItemModalOpen({ isOpen: true, clickedItem: item });
@@ -48,12 +50,16 @@ export default function ItemCard({
   */
 
   const handleLikeClick = () => {
-    setIsLiked(!isLiked);
-    setNewIsLiked(!isLiked);
 
     console.log(isLiked);
-    console.log(newIsLiked);
-    onCardLike({ id: item._id, isLiked: isLiked });
+    setIsLiked(!isLiked);
+    setNewIsLiked(!isLiked);
+    console.log(isLiked);
+
+
+    //console.log(newIsLiked);
+    
+    onCardLike({ id: item._id, isLiked: !isLiked });
   };
 
   //const cardIsLikedByCurrentUser = clickedItem && clickedItem._id === currentUser.id;

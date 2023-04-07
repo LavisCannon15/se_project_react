@@ -78,6 +78,7 @@ export default function App() {
   const [apiItems, setApiItems] = useState([]);
 
   const token = localStorage.getItem("jwt");
+  console.log(token);
   // localStorage.removeItem("jwt");
 
   /*
@@ -94,7 +95,7 @@ export default function App() {
       api
         .getItems()
         .then((data) => {
-          setApiItems(data)
+          setApiItems(data);
         })
         .catch((err) => console.log(err));
     }
@@ -104,8 +105,6 @@ export default function App() {
     (item) => item.weather === currentWeatherCard
   );
 
-
-  
   const deleteItem = (itemId) => {
     api
       .deleteItem(itemId)
@@ -116,8 +115,6 @@ export default function App() {
       })
       .catch((err) => console.log(err));
   };
-  
-
 
   const addItem = (name, imageUrl, weather) => {
     api
@@ -196,12 +193,18 @@ export default function App() {
       .catch((err) => console.log(err));
   };
 
+  /*
+   const currentUserItems = filteredApiItems.filter(
+     (item) => item.id === currentUser.id
+   );
+   */
+
   
+   /*
   useEffect(() => {
     console.log(apiItems);
-
   }, [apiItems]);
-  
+*/
 
   const handleSignOut = (evt) => {
     evt.preventDefault();
@@ -224,9 +227,7 @@ export default function App() {
       });
   };
 
-
-
-/*
+  /*
 const [likedItems, setLikedItems] = useState([]);
 
 const onCardLike = ({ id, isLiked }) => {
@@ -258,80 +259,77 @@ const onCardLike = ({ id, isLiked }) => {
 
 */
 
+  const [newIsLiked, setNewIsLiked] = useState(false);
+
+  
+  const onCardLike = ({ id, isLiked }) => {
+    //console.log(newIsLiked);
+
+    const updatedItems = apiItems.map((item) =>
+      item._id === id
+        ? {
+            ...item,
+            likes: isLiked
+              ? [...item.likes, currentUser._id]
+              : item.likes.filter((userId) => userId !== currentUser._id),
+          }
+        : item
+    );
 
 
-const [newIsLiked, setNewIsLiked] = useState(false);
-
-const onCardLike = ({ id, isLiked }) => {
 
 
-  //console.log(newIsLiked);
+
+    newIsLiked
+      ? api
+          .addCardlike(id, token)
+          .then(() => {
+            setApiItems(updatedItems);
+            console.log("added");
+          })
+          .catch((err) => console.log(err))
+      : api
+          .removeCardlike(id, token)
+          .then(() => {
+            setApiItems(updatedItems);
+            console.log("removed");
+          })
+          .catch((err) => console.log(err));
+  };
+  
+
+
+
 
   /*
-const updatedItems = apiItems.map((item) =>
-  item._id === id
-    ? {
-        ...item,
-        likes: isLiked
-          ? [...item.likes, currentUser._id]
-          : item.likes.filter((userId) => userId !== currentUser._id),
-      }
-    : item
-);
-*/
-
-const updatedItems = apiItems.map((item) =>
-  item._id === id
-    ? {
-        ...item,
-        likes: isLiked
-          ? [...item.likes, currentUser._id]
-          : item.likes.filter((userId) => userId !== currentUser._id),
-      }
-    : item
-);
-
-
-  //setIsLiked(!isLiked);
-
-  newIsLiked
-    ? api
-        .addCardlike(id, token)
-        .then(() => {
-          setApiItems(updatedItems);
-          console.log("added")
-        })
-        .catch((err) => console.log(err))
-    : api
-        .removeCardlike(id, token)
-        .then(() => {
-          setApiItems(updatedItems);
-          console.log("removed")
-        })
-        .catch((err) => console.log(err));
-};
-
-
-
-/*
 const onCardLike = ({ id, isLiked }) => {
   //onst cardIsLikedByCurrentUser = cardItem.likes.includes(currentUser.id);
   //console.log(id);
 
-  
-  const updatedItems = apiItems.map((item) => {
-    if (item._id === id) {
-      return { ...item, isLiked };
-    }
-    return item;
-  });
-  
+
+
+const updatedItems = apiItems.map((item) =>
+  item._id === id
+    ? {
+        ...item,
+        likes: isLiked
+          ? [...item.likes, currentUser._id]
+          : item.likes.filter((userId) => userId !== currentUser._id),
+      }
+    : item
+);
+
+
+
+
+
+
 
   //console.log(updatedItems);
 
   //setIsLiked(!isLiked);
 
-  isLiked
+  newIsLiked
     ? api
         .addCardlike(id, token)
         .then((updatedCard) => {
@@ -348,12 +346,6 @@ const onCardLike = ({ id, isLiked }) => {
         .catch((err) => console.log(err));
 };
 */
-
-
-
-
-
-
 
   return (
     <div className="app">
@@ -380,8 +372,8 @@ const onCardLike = ({ id, isLiked }) => {
                   onCardLike={onCardLike}
                   currentUser={currentUser}
                   clickedItem={clickedItem}
-                  setNewIsLiked={setNewIsLiked}
                   newIsLiked={newIsLiked}
+                  setNewIsLiked={setNewIsLiked}
                 />
               </Route>
               <ProtectedRoute path={"/profile"} isLoggedIn={isLoggedIn}>
@@ -395,8 +387,8 @@ const onCardLike = ({ id, isLiked }) => {
                   onCardLike={onCardLike}
                   currentUser={currentUser}
                   clickedItem={clickedItem}
-                  setNewIsLiked={setNewIsLiked}
                   newIsLiked={newIsLiked}
+                  setNewIsLiked={setNewIsLiked}
                 />
               </ProtectedRoute>
             </Switch>

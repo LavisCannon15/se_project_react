@@ -11,8 +11,8 @@ export default function ClothesSection({
   onCardLike,
   currentUser,
   clickedItem,
-  setNewIsLiked,
   newIsLiked,
+  setNewIsLiked,
 }) {
   const handleAddClothesClick = () => {
     setIsFormModalOpen({ isOpen: true });
@@ -56,8 +56,8 @@ export default function ClothesSection({
             }}
             currentUser={currentUser}
             clickedItem={clickedItem}
-            setNewIsLiked={setNewIsLiked}
             newIsLiked={newIsLiked}
+            setNewIsLiked={setNewIsLiked}
           />
         ))}
       </div>

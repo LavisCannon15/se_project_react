@@ -2,7 +2,10 @@ export default class Auth {
   constructor() {
     //this.baseUrl = "https://my-json-server.typicode.com/LavisCannon15/se_project_react";
 
-    this.baseUrl = "http://localhost:3001";
+        this.baseUrl =
+          process.env.NODE_ENV === "production"
+            ? "api.wtwrlaviscannon.chickenkiller.com"
+            : "http://localhost:3001";
   }
 
   signup(name, avatar, email, password) {
