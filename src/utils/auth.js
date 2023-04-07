@@ -4,8 +4,9 @@ export default class Auth {
 
         this.baseUrl =
           process.env.NODE_ENV === "production"
-            ? "wtwrlaviscannon.chickenkiller.com"
-            : "http://localhost:3001";
+            ? "api.wtwrlaviscannon.chickenkiller.com"
+            : "wtwrlaviscannon.chickenkiller.com";
+
   }
 
   signup(name, avatar, email, password) {

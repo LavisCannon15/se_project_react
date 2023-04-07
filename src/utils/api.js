@@ -5,16 +5,15 @@
 */
 //"https://my-json-server.typicode.com/LavisCannon15/se_project_react";
 
-
 export default class Api {
   constructor() {
     //this.baseUrl =
-      //"https://my-json-server.typicode.com/LavisCannon15/se_project_react";
+    //"https://my-json-server.typicode.com/LavisCannon15/se_project_react";
 
     this.baseUrl =
       process.env.NODE_ENV === "production"
-        ? "wtwrlaviscannon.chickenkiller.com"
-        : "http://localhost:3001";
+        ? "api.wtwrlaviscannon.chickenkiller.com"
+        : "wtwrlaviscannon.chickenkiller.com";
 
     this.headers = {
       "Content-Type": "application/json",
