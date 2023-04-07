@@ -12,8 +12,8 @@ export default class Api {
 
     this.baseUrl =
       process.env.NODE_ENV === "production"
-        ? "api.wtwrlaviscannon.chickenkiller.com"
-        : "wtwrlaviscannon.chickenkiller.com";
+        ? "api.wtwrlaviscannon.nullexistence.net"
+        : "wtwrlaviscannon.nullexistence.net";
 
     this.headers = {
       "Content-Type": "application/json",
