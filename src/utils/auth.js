@@ -5,7 +5,7 @@ export default class Auth {
     this.baseUrl =
       process.env.NODE_ENV === "production"
         ? "https://api.wtwrlaviscannon.nullexistence.net"
-        : "http://localhost:3001";
+        : "http://localhost:3000";
   }
 
   signup(name, avatar, email, password) {

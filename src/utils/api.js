@@ -13,7 +13,7 @@ export default class Api {
     this.baseUrl =
       process.env.NODE_ENV === "production"
         ? "https://api.wtwrlaviscannon.nullexistence.net"
-        : "http://localhost:3001";
+        : "http://localhost:3000";
 
     this.headers = {
       "Content-Type": "application/json",
