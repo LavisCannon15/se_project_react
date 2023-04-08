@@ -2,11 +2,10 @@ export default class Auth {
   constructor() {
     //this.baseUrl = "https://my-json-server.typicode.com/LavisCannon15/se_project_react";
 
-        this.baseUrl =
-          process.env.NODE_ENV === "production"
-            ? "api.wtwrlaviscannon.nullexistence.net"
-            : "wtwrlaviscannon.nullexistence.net";
-
+    this.baseUrl =
+      process.env.NODE_ENV === "production"
+        ? "https://api.wtwrlaviscannon.nullexistence.net"
+        : "http://localhost:3001";
   }
 
   signup(name, avatar, email, password) {
@@ -32,8 +31,7 @@ export default class Auth {
         email,
         password,
       }),
-    })
-      .then(this._processResponse)
+    }).then(this._processResponse);
   }
 
   getUser() {
