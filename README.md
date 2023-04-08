@@ -14,4 +14,7 @@ Server created with Express, [Repo here](https://github.com/LavisCannon15/se_pro
 
 ## Link to domain
 
-https://wtwrlaviscannon.nullexistence.net/#/
+frontend: https://wtwrlaviscannon.nullexistence.net
+
+backend: https://api.wtwrlaviscannon.nullexistence.net
+
